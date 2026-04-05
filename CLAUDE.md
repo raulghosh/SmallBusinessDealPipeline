@@ -20,6 +20,7 @@ When the user returns after a break, summarize: how many active deals, what stat
 
 | Stage | Trigger | Skill to Invoke | Next State |
 |-------|---------|-----------------|------------|
+| Vet brokers | User says "find brokers" / "vet broker" / "is [X] legit" | /broker-vetter | (no deal state change) |
 | Monthly scan | User says "scan" or "find deals" | /market-scan | DISCOVERED |
 | Evaluate discovered deals | User selects deals to analyze | /deal-evaluator | ANALYZED |
 | Market overlay | After deal evaluation completes | /market-intel (auto) | (stays ANALYZED) |
@@ -29,6 +30,8 @@ When the user returns after a break, summarize: how many active deals, what stat
 | Satisfaction check | User says "are we good on this deal?" | /broker-comm | READY_TO_MEET or PASSED |
 | Financing (parallel) | Anytime deal is SHORTLISTED+ | /financing | Updates financing obj |
 | Pass on deal | User decides to pass | Manual state update | PASSED |
+
+**Broker Vetting Rule:** Before engaging any broker via /broker-comm (for CONTACTING stage), check whether the broker has been vetted via /broker-vetter. If not, suggest vetting them first. A bad broker can waste months on a dead deal.
 
 ## State Machine
 ```

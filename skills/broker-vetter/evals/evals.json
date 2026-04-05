@@ -1,0 +1,82 @@
+{
+  "skill": "broker-vetter",
+  "description": "Evaluates the broker-vetter skill on synthetic broker profiles to test scoring accuracy, disqualifier logic, and specialization detection.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "Clear Tier 1 broker (all positive signals)",
+      "prompt": "Evaluate this broker:\n\n**Firm:** Peachtree Business Advisors LLC\n**Location:** Atlanta, GA\n**Website:** www.peachtreebusinessadvisors.com (last updated last month, all pages load, mobile-optimized, SSL valid)\n**Team:** 5 named brokers with LinkedIn profiles verified. Managing partner Sarah Chen has 18 years tenure, teaches IBBA CBI coursework.\n**Memberships:** Verified IBBA member (listed at ibba.org/directory), GABB member (verified at gabb.org), BSCAI sponsor.\n**Case studies:** 12 detailed case studies on website, including 3 laundromat deals (2022, 2023, 2024) and 2 commercial janitorial deals (2023) with specific business names, deal sizes, and buyer types.\n**Licensing:** GA Real Estate License active since 2007 (verified at grec.state.ga.us).\n**Reviews:** 62 Google reviews, 4.6 average, posted consistently over 5 years (no clustering). Mix of 4-star and 5-star reviews.\n**BizBuySell:** Active profile with 8 current listings.\n**Awards:** GABB Multi-Million Dollar Club 2022, 2023 (verified on gabb.org awards page).\n**Fee structure:** 10% success fee, no upfront retainer, 12-month tail provision (disclosed on FAQ page).\n\nShould this broker be approved?",
+      "assertions": [
+        {"id": "1.1", "text": "Verdict is PROCEED"},
+        {"id": "1.2", "text": "Score is 18+ out of 20 (Tier 1)"},
+        {"id": "1.3", "text": "No disqualifiers triggered"},
+        {"id": "1.4", "text": "All 4 hard signals credited (IBBA, named brokers, case studies, 10+ years)"},
+        {"id": "1.5", "text": "Laundromat and janitorial specialization explicitly noted as a positive"},
+        {"id": "1.6", "text": "Evidence trail cites at least 5 source URLs"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Disqualified: review farming pattern",
+      "prompt": "Evaluate this broker:\n\n**Firm:** Elite Southeast Business Sales\n**Location:** Jacksonville, FL\n**Website:** www.elitesoutheastbrokers.com (updated this month)\n**Team:** 3 named brokers with photos and bios\n**Memberships:** Claims IBBA membership but NOT listed in ibba.org directory\n**Case studies:** 2 case studies with specific deal names\n**Licensing:** FL Real Estate license active since 2019\n**Reviews:** 18 Google reviews, 100% 5-star, 14 of them posted within a 3-week window in November 2024. Reviewer profiles each have exactly 1 review. 4 reviews use nearly identical phrasing: 'Professional, responsive, and got the deal done!'\n**BizBuySell:** 2 active listings\n**Fee structure:** 12% success fee, $7,500 non-refundable retainer required upfront\n\nShould this broker be approved?",
+      "assertions": [
+        {"id": "2.1", "text": "Verdict is AVOID / DISQUALIFIED"},
+        {"id": "2.2", "text": "Review farming pattern is explicitly identified"},
+        {"id": "2.3", "text": "IBBA claim is flagged as unverified"},
+        {"id": "2.4", "text": "Non-refundable retainer is flagged as concern"},
+        {"id": "2.5", "text": "Output does NOT score positive signals (disqualifier stopped scoring)"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Disqualified: outdated website + anonymous team",
+      "prompt": "Evaluate this broker:\n\n**Firm:** Premier Business Brokers of the South\n**Location:** Chattanooga, TN\n**Website:** www.premierbrokerssouth.com (Copyright footer says 2022, latest blog post from March 2023, 2 internal links return 404, mobile version has broken layout)\n**Team:** 'Our Team' page shows stock photos, no names listed, no LinkedIn links\n**Memberships:** Claims 'member of national broker associations' without naming which\n**Case studies:** No case studies page. 8 testimonials with only initials (J.M., business owner)\n**Licensing:** Cannot verify in TN real estate commission records\n**Reviews:** 4 Google reviews, all 5-star\n**BizBuySell:** No active profile\n**Fee structure:** Not disclosed on website, 'contact for details'\n**Office address:** 1234 Main St #255 (Google street view shows UPS Store)\n\nShould this broker be approved?",
+      "assertions": [
+        {"id": "3.1", "text": "Verdict is AVOID / DISQUALIFIED"},
+        {"id": "3.2", "text": "Multiple disqualifiers are identified (at least 3)"},
+        {"id": "3.3", "text": "Outdated website is flagged as disqualifier"},
+        {"id": "3.4", "text": "Anonymous team / stock photos flagged as disqualifier"},
+        {"id": "3.5", "text": "UPS Store mailbox address flagged"},
+        {"id": "3.6", "text": "No deal transparency flagged"}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Borderline: strong signals but some concerns (requires variance check)",
+      "prompt": "Evaluate this broker:\n\n**Firm:** Carolina Business Exchange\n**Location:** Charlotte, NC\n**Website:** www.carolinabizexchange.com (last updated 4 months ago, all links work, SSL valid)\n**Team:** 2 named brokers with LinkedIn profiles verified\n**Memberships:** IBBA member (verified at ibba.org)\n**Case studies:** 4 case studies, 2 with specific details, 2 more generic\n**Licensing:** NC Real Estate license active since 2015 (9 years)\n**Reviews:** 31 Google reviews, 4.4 average, spread across 3 years, mix of 3-5 star reviews\n**BizBuySell:** 4 active listings\n**Awards:** None listed\n**Fee structure:** 10% success fee, $3,000 refundable retainer\n**Vertical specialization:** 1 laundromat case study from 2022, no car wash or janitorial deals visible\n\nShould this broker be approved?",
+      "assertions": [
+        {"id": "4.1", "text": "Verdict is BORDERLINE or indicates human review needed"},
+        {"id": "4.2", "text": "No disqualifiers triggered"},
+        {"id": "4.3", "text": "Score falls in 10-13 range"},
+        {"id": "4.4", "text": "Limited vertical specialization is noted as weakness"},
+        {"id": "4.5", "text": "Years active (9) is flagged as just below the 10-year threshold"},
+        {"id": "4.6", "text": "Output recommends a 15-min intro call or similar light-touch next step"}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Disqualified: SEO spam language + fake awards",
+      "prompt": "Evaluate this broker:\n\n**Firm:** #1 Georgia Business Brokers\n**Website:** www.georgia-number-one-brokers.com (headline: '#1 Business Broker in Georgia! Best Rated! America's Top Broker!' with no citation)\n**Team:** 2 named brokers\n**Memberships:** Claims 'Top 10 Broker 2024' from BestBizBrokersUSA.com (pay-to-play aggregator)\n**Case studies:** Generic blog posts like '5 Tips for Selling Your Business' but no deal-specific case studies\n**Reviews:** 22 reviews, all 5-star\n**City pages:** Pages for 'Business Brokers Atlanta', 'Business Brokers Macon', 'Business Brokers Savannah' with 90% identical body content\n**Licensing:** GA Real Estate license active since 2020\n**Fee structure:** 15% success fee\n\nShould this broker be approved?",
+      "assertions": [
+        {"id": "5.1", "text": "Verdict is AVOID / DISQUALIFIED"},
+        {"id": "5.2", "text": "Unsubstantiated '#1 broker' language is flagged"},
+        {"id": "5.3", "text": "Pay-to-play award is discounted / flagged as fake"},
+        {"id": "5.4", "text": "Template city pages flagged as SEO spam"},
+        {"id": "5.5", "text": "15% success fee flagged as above industry norm"}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "List mode: find top brokers in GA for laundromat deals",
+      "prompt": "Find the top 5-10 business brokers in Georgia who specialize in laundromat acquisitions. Apply the full vetting methodology.",
+      "assertions": [
+        {"id": "6.1", "text": "Output explicitly describes the 4-phase flow (discovery, enrichment, scoring, variance check)"},
+        {"id": "6.2", "text": "Output lists authoritative directory sources it would pull from (IBBA, GABB, state licensing, BizBuySell, CLA)"},
+        {"id": "6.3", "text": "Output uses the specified tier structure (Tier 1, Tier 2, Borderline, Disqualified)"},
+        {"id": "6.4", "text": "Output specifies that laundromat specialization requires case study evidence, not self-claim"},
+        {"id": "6.5", "text": "Output mentions CLA (Coin Laundry Association) membership as a specialization signal"},
+        {"id": "6.6", "text": "Output is conservative: willing to return fewer brokers if evidence is thin rather than padding the list"}
+      ]
+    }
+  ]
+}
