@@ -1,0 +1,51 @@
+{
+  "eval_id": 6,
+  "eval_name": "Cross-vertical car wash vs laundromat comparison",
+  "assertions_total": 7,
+  "assertions_passed": 7,
+  "assertions_failed": 0,
+  "detail": [
+    {
+      "assertion_id": "6.1",
+      "assertion_text": "The output includes a separate evaluation memo for Deal A (car wash) and Deal B (laundromat), plus a final comparative ranking",
+      "result": "PASS",
+      "evidence": "Output contains complete separate memos for both deals starting at '# DEAL A — Express Car Wash, Chattanooga TN' and '# DEAL B — Unattended Coin Laundry, Birmingham AL', followed by '## Deal A (Express Car Wash, Chattanooga TN) vs. Deal B (Unattended Coin Laundry, Birmingham AL)' comparative ranking section with side-by-side summary table and detailed ranking analysis."
+    },
+    {
+      "assertion_id": "6.2",
+      "assertion_text": "Deal A uses car wash express/tunnel benchmarks (3.0x-4.5x SDE) and Deal B uses laundromat unattended benchmarks (2.5x-4.0x SDE) — they do NOT use the same benchmark table",
+      "result": "PASS",
+      "evidence": "Deal A DEAL VITALS table shows 'SDE Multiple | 3.96x | Express/tunnel: 3.0x-4.5x'. Deal B DEAL VITALS table shows 'SDE Multiple | 3.54x | Unattended self-service: 2.5x-4.0x'. These are vertically-specific benchmarks applied correctly to each deal type."
+    },
+    {
+      "assertion_id": "6.3",
+      "assertion_text": "Deal A's lack of seller financing combined with 'relocating out of state' is flagged as concerning",
+      "result": "PASS",
+      "evidence": "Output explicitly flags under SELLER-SIDE DECODING section: 'Why \"relocating\"?' with detailed analysis. States 'The refusal to offer any seller financing makes this worse' and 'That is the posture of someone who expects the business to underperform after the sale.' DEAL VITALS table shows 'Seller Financing | None offered | Preferred | FLAG'."
+    },
+    {
+      "assertion_id": "6.4",
+      "assertion_text": "Deal A's 2020 establishment (~6 years old) is flagged as a concern — not tested through a full economic cycle",
+      "result": "PASS",
+      "evidence": "Output states under VALUATION ASSESSMENT: 'Business established 2020 (~6 years): -0.3x to -0.5x. Has not been tested through a full economic cycle.' Also in RED FLAGS and comparative ranking: 'Economic Cycle Test | No -- business has never faced a recession | Yes -- survived 2008-09 and COVID | **Deal B**'."
+    },
+    {
+      "assertion_id": "6.5",
+      "assertion_text": "Deal B's card system (installed 2021) is highlighted as a positive for verifiable revenue and remote monitoring",
+      "result": "PASS",
+      "evidence": "Output under VALUATION ASSESSMENT states: 'Card system installed 2021: +0.2x to +0.4x. This is a significant premium driver. Card/app systems with transaction logs provide verifiable revenue, which is the #1 due diligence challenge in laundromat acquisitions.' ABSENTEE VIABILITY SCORE section explicitly credits 'Card system installed 2021 with transaction logs. Full remote reporting capability. Revenue is verifiable.' (3/3 points)."
+    },
+    {
+      "assertion_id": "6.6",
+      "assertion_text": "The ranking notes that Deal B (fully unattended laundromat) has a significantly better absentee profile than Deal A for an H1B buyer",
+      "result": "PASS",
+      "evidence": "Comparative ranking states: 'Deal B scores 9/10 on absentee suitability. It is a fully unattended laundromat with a card system for remote monitoring, zero employees, and a 71-year-old seller who has already been running it passively. The buyer can own this business without any operational involvement -- exactly what an H1B visa requires. Deal A scores 6/10 and requires hiring a site manager ($40K-$55K/year) who is not currently confirmed on staff. For an H1B buyer who cannot work in the business, this gap is decisive.'"
+    },
+    {
+      "assertion_id": "6.7",
+      "assertion_text": "The ranking places Deal B above Deal A as the better acquisition for this buyer",
+      "result": "PASS",
+      "evidence": "Output explicitly states: '### Ranking: Deal B is the superior acquisition for this buyer.' and '**Deal B (Unattended Coin Laundry, Birmingham AL) is the clear first choice** for an H1B visa holder seeking absentee ownership.' The side-by-side summary table shows 'Deal B' winning on all critical dimensions for this buyer profile (Margin of Safety, Years in Business, Seller Financing, Absentee Score, H1B Suitability, etc.)."
+    }
+  ]
+}

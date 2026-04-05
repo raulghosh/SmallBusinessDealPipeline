@@ -1,0 +1,89 @@
+{
+  "skill_name": "deal-evaluator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hey, I got this listing from BizBuySell and I'm thinking of putting in an offer. I'm on an H1B visa so I need it to run without me. Here's the full listing info:\n\nBusiness: $1.3M Multi-Service Cleaning & Property Maintenance Company\nLocation: Murfreesboro, Tennessee\nAsking Price: $649,000\nGross Revenue: $1,346,277\nSeller's Discretionary Earnings (SDE): $227,898\nYear Established: 2002\nFranchise: No\nSeller Financing: YES — $100,000 at 10% interest, 24-month term\nReason for Selling: Retirement\nReal Estate: Owned\nFF&E: $40,000 included\nServices: Commercial and residential cleaning, property maintenance, landscaping support\nEmployees: Not disclosed\nAbsentee: Not stated\nBroker: Douglas Berger, Transworld Business Advisors of Murfreesboro\n\nThe broker says it's been 'a staple in the community for over two decades' and is 'ready for a new owner to take to the next level.' What's your read on this deal? Should I pursue it?",
+      "expected_output": "A full 11-section deal evaluation memo including intrinsic value analysis, seller's axe assessment, and negotiation position.",
+      "assertions": [
+        {"name": "has-all-11-sections", "type": "llm_rubric", "value": "The output contains all 11 required sections: DEAL VITALS, VALUATION ASSESSMENT, INTRINSIC VALUE & MARGIN OF SAFETY, SELLER-SIDE DECODING, SELLER'S AXE, ABSENTEE VIABILITY SCORE, RED FLAGS, GREEN FLAGS, DUE DILIGENCE PRIORITY QUESTIONS, NEGOTIATION POSITION, and BROKER'S VERDICT"},
+        {"name": "sde-multiple-math", "type": "llm_rubric", "value": "The output correctly calculates the SDE multiple as approximately 2.85x (asking price $649,000 divided by SDE $227,898)"},
+        {"name": "intrinsic-value-dcf", "type": "llm_rubric", "value": "The INTRINSIC VALUE section includes a conservative DCF calculation that subtracts the cost of a GM from SDE to arrive at owner's earnings, then discounts at 15-20% over 5 years"},
+        {"name": "sellers-axe-archetype", "type": "llm_rubric", "value": "The SELLER'S AXE section identifies a seller archetype (Genuine Retiree, Burnout, Escape Artist, or Fisher) and provides behavioral evidence for the classification"},
+        {"name": "negotiation-opening-range", "type": "llm_rubric", "value": "The NEGOTIATION POSITION section includes a specific recommended opening offer range that is below the $649,000 asking price, with justification"},
+        {"name": "verdict-not-pursue-now", "type": "llm_rubric", "value": "The final broker verdict is NOT 'PURSUE NOW'. It should be 'PURSUE WITH CONDITIONS' or 'GATHER MORE INFO' given the unconfirmed management structure"},
+        {"name": "h1b-flag-present", "type": "llm_rubric", "value": "The output explicitly mentions H1B visa considerations, specifically flagging any operational involvement requirements that could conflict with visa work authorization restrictions"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I got an email from a broker at Southeast Business Alliance about a cleaning business in central NC. Here's what she sent me:\n\n'Hi, I'm reaching out about a profitable commercial cleaning business in central North Carolina. The business has 32 part-time employees and generates $739,926 in annual revenue with $239,643 in seller's discretionary earnings — that's a 32% SDE margin, which is exceptional for this industry. We're asking $709,500. The business is home-based, so no lease liability, and the owner is retiring after a successful run. This is a true recurring revenue business with a dedicated client base. Happy to share more under NDA.'\n\nThe broker didn't mention when the business was founded, whether there's seller financing, or anything about how operations are managed. I want to know: is this a good deal? What am I not being told?",
+      "expected_output": "A full 11-section deal evaluation memo that flags missing founding date, decodes broker language, and includes intrinsic value and negotiation sections.",
+      "assertions": [
+        {"name": "has-all-11-sections", "type": "llm_rubric", "value": "The output contains all 11 required sections including INTRINSIC VALUE & MARGIN OF SAFETY, SELLER'S AXE, and NEGOTIATION POSITION"},
+        {"name": "year-established-missing-flag", "type": "llm_rubric", "value": "The output explicitly calls out the absence of year established / founding date as a red flag or concerning omission"},
+        {"name": "revenue-multiple-rich", "type": "llm_rubric", "value": "The output flags the ~0.96x revenue multiple ($709,500 / $739,926) as RICH or at the high end of the typical range"},
+        {"name": "decodes-true-recurring-revenue", "type": "llm_rubric", "value": "The output identifies 'true recurring revenue' as seller coaching language that needs to be verified with actual contract terms"},
+        {"name": "moat-assessment-present", "type": "llm_rubric", "value": "The INTRINSIC VALUE section includes a moat assessment that rates switching costs, local reputation, or other moat types as STRONG, WEAK, or NONE"},
+        {"name": "who-manages-employees", "type": "llm_rubric", "value": "The output raises the question of who manages the 32 part-time employees day-to-day as a key unknown for absentee viability"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm trying to decide between two deals and need your help ranking them. I'm an H1B visa holder, need absentee ownership, no franchises. Here's what I have:\n\nDEAL A — Upper East Tennessee Commercial Cleaning\nAsking: $1,199,000\nSDE (Cash Flow): $296,933\nServices: Janitorial, carpet cleaning, floor strip/wax, pressure washing, sanitizing\nFranchise status: Not confirmed\nSeller financing: Not mentioned\nManagement/absentee: Not disclosed\nContracts: Not disclosed\n\nDEAL B — 65-Year-Old Commercial Cleaning Business, Northport/Tuscaloosa County, Alabama\nAsking: $801,800 (real estate excluded, available for lease or purchase at additional cost)\nFF&E: $186,746\nYear established: ~1960\nFranchise: No\nSeller financing: Not confirmed\nStatus: Currently under exclusive LOI\nManagement: 'Seasoned team committed to transition'\nRevenue/SDE: Not publicly disclosed\n\nWhich one should I pursue? Give me a full analysis of both and then a comparative ranking.",
+      "expected_output": "Two complete 11-section deal evaluation memos followed by a comparative ranking section.",
+      "assertions": [
+        {"name": "has-two-memos-plus-ranking", "type": "llm_rubric", "value": "The output includes a separate evaluation memo for Deal A, a separate evaluation memo for Deal B, and a final comparative ranking section"},
+        {"name": "deal-a-multiple-rich", "type": "llm_rubric", "value": "Deal A's SDE multiple of approximately 4.03x is flagged as RICH or at the very top of the acceptable range"},
+        {"name": "deal-a-franchise-critical-flag", "type": "llm_rubric", "value": "The unconfirmed franchise status for Deal A is treated as a critical flag that must be resolved"},
+        {"name": "deal-b-longevity-green", "type": "llm_rubric", "value": "Deal B's ~65 years in business is highlighted as a major positive signal"},
+        {"name": "negotiation-positions-both-deals", "type": "llm_rubric", "value": "Both deal memos include a NEGOTIATION POSITION section with BATNA analysis and recommended approach"},
+        {"name": "ranking-favors-b", "type": "llm_rubric", "value": "The comparative ranking places Deal B above Deal A as the preferred option if it becomes available"}
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Found this car wash listing on BizBuySell. I'm an H1B visa holder looking for absentee ownership. Here's the info:\n\nBusiness: Express Tunnel Car Wash\nLocation: Kennesaw, Georgia (suburb of Atlanta)\nAsking Price: $1,850,000 (business only — real estate available separately for $2,100,000)\nGross Revenue: $1,200,000\nSDE: $420,000\nYear Established: 2017\nFranchise: No\nSeller Financing: Not mentioned\nReason for Selling: 'Pursuing other business ventures'\nEmployees: 6 full-time, 4 part-time\nEquipment: Fully automated tunnel system installed 2019, water reclamation system\nMembership Program: 'Growing monthly membership base — currently 800+ active members'\nFF&E: $850,000 (included)\nTraffic Count: '45,000+ vehicles per day on adjacent road'\n\nBroker notes: 'Tremendous growth potential — this wash is only scratching the surface of what this location can do. Perfect for an investor looking for passive income.'\n\nWhat do you think? Is this worth pursuing?",
+      "expected_output": "A full 11-section deal evaluation memo applying car wash-specific benchmarks.",
+      "assertions": [
+        {"name": "has-all-11-sections", "type": "llm_rubric", "value": "The output contains all 11 required sections including INTRINSIC VALUE & MARGIN OF SAFETY, SELLER'S AXE, and NEGOTIATION POSITION"},
+        {"name": "correct-carwash-multiples", "type": "llm_rubric", "value": "The output applies car wash-specific SDE multiples (express/tunnel range of 3.0x-4.5x) and correctly calculates the SDE multiple as approximately 4.4x ($1,850,000 / $420,000)"},
+        {"name": "membership-scrutiny", "type": "llm_rubric", "value": "The output scrutinizes the '800+ active members' claim, asking about churn rate, whether these are truly active, and what percentage of revenue comes from memberships"},
+        {"name": "equipment-age-assessment", "type": "llm_rubric", "value": "The output assesses the tunnel equipment installed in 2019 against equipment lifespan benchmarks and flags replacement capex risk"},
+        {"name": "pursuing-other-ventures-decoded", "type": "llm_rubric", "value": "The SELLER'S AXE or SELLER-SIDE DECODING section decodes 'pursuing other business ventures' as a non-retirement reason that warrants scrutiny"},
+        {"name": "absentee-score-express-model", "type": "llm_rubric", "value": "The ABSENTEE VIABILITY SCORE recognizes that express/tunnel car wash is one of the better absentee models and scores accordingly (likely 6-8/10)"},
+        {"name": "real-estate-separation-flagged", "type": "llm_rubric", "value": "The output flags the separate real estate pricing ($2.1M) as an important consideration and analyzes the business independently"},
+        {"name": "sde-multiple-above-range", "type": "llm_rubric", "value": "The ~4.4x SDE multiple is flagged as above the typical express/tunnel range and labeled RICH or at the ceiling"}
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I'm looking at a laundromat deal. H1B visa holder, need full absentee. Here's what the broker sent:\n\nBusiness: Self-Service Coin Laundry\nLocation: Decatur, Georgia (DeKalb County, metro Atlanta)\nAsking Price: $385,000\nGross Revenue: $210,000\nSDE: $105,000\nYear Established: 2009\nFranchise: No\nSeller Financing: YES — willing to carry 20% at 7% interest, 5-year term\nReason for Selling: Retirement (owner is 68)\nSquare Footage: 2,800 sq ft\nLease: 4 years remaining, one 5-year option to renew\nEquipment: 28 washers, 24 dryers (mix of ages, 'most replaced within last 5 years')\nPayment System: Coin-only, no card system\nAttendant: Part-time attendant 20 hrs/week\nNo wash-dry-fold service\n\nBroker says: 'Stable neighborhood business with loyal customer base. Perfect turnkey investment — the current owner checks in twice a week for about an hour each time.'\n\nIs this a good deal for me?",
+      "expected_output": "A full 11-section deal evaluation memo applying laundromat-specific benchmarks with special attention to coin-only revenue verification risk and lease term analysis.",
+      "assertions": [
+        {"name": "has-all-11-sections", "type": "llm_rubric", "value": "The output contains all 11 required sections including INTRINSIC VALUE & MARGIN OF SAFETY, SELLER'S AXE, and NEGOTIATION POSITION"},
+        {"name": "correct-laundromat-multiples", "type": "llm_rubric", "value": "The output applies laundromat-specific multiples (unattended self-service range of 2.5x-4.0x) and correctly calculates the SDE multiple as approximately 3.67x ($385,000 / $105,000)"},
+        {"name": "coin-only-revenue-risk", "type": "llm_rubric", "value": "The output flags coin-only operation as a critical due diligence concern because revenue cannot be independently verified, and recommends cross-checking with utility bills"},
+        {"name": "lease-term-analysis", "type": "llm_rubric", "value": "The output analyzes the lease (4 years remaining + one 5-year renewal = 9 years max) against equipment payback period"},
+        {"name": "equipment-age-verification", "type": "llm_rubric", "value": "The output flags 'most replaced within last 5 years' as vague language requiring serial numbers and maintenance logs for every machine"},
+        {"name": "seller-financing-positive", "type": "llm_rubric", "value": "The 20% seller financing at 7% from a 68-year-old retiring owner is recognized as a positive confidence signal"},
+        {"name": "absentee-score-high", "type": "llm_rubric", "value": "The ABSENTEE VIABILITY SCORE recognizes unattended self-service laundromat as an excellent absentee model and scores it 7+/10"},
+        {"name": "card-system-upgrade-mentioned", "type": "llm_rubric", "value": "The output recommends or mentions upgrading to a card/app payment system for revenue verification and remote monitoring"}
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Help me compare these two very different deals. I'm an H1B visa holder, need absentee, no franchises.\n\nDEAL A — Express Car Wash, Chattanooga TN\nAsking: $950,000 (business only)\nRevenue: $680,000\nSDE: $240,000\nYear Established: 2020\nFranchise: No\nSeller Financing: None offered\nReason: 'Relocating out of state'\nMembership: 450 active members\nEquipment: Tunnel installed 2020\nEmployees: 3 FT, 2 PT\nLease: 8 years remaining\n\nDEAL B — Unattended Coin Laundry, Birmingham AL\nAsking: $290,000\nRevenue: $165,000\nSDE: $82,000\nYear Established: 2003\nFranchise: No\nSeller Financing: YES — 25% at 6.5%, 5 years\nReason: Retirement (age 71)\nEquipment: 22 washers, 18 dryers, card system installed 2021\nLease: 6 years remaining + two 5-year options\nSquare Footage: 2,200 sq ft\nNo employees — fully unattended\n\nWhich is the better deal for someone in my situation?",
+      "expected_output": "Two complete 11-section deal memos with correct vertical-specific benchmarks, then a comparative ranking favoring Deal B for absentee viability.",
+      "assertions": [
+        {"name": "has-two-memos-plus-ranking", "type": "llm_rubric", "value": "The output includes a separate evaluation memo for Deal A (car wash) and Deal B (laundromat), plus a final comparative ranking"},
+        {"name": "correct-vertical-benchmarks", "type": "llm_rubric", "value": "Deal A uses car wash express/tunnel benchmarks (3.0x-4.5x SDE) and Deal B uses laundromat unattended benchmarks (2.5x-4.0x SDE) — they do NOT use the same benchmark table"},
+        {"name": "deal-a-no-seller-financing-flag", "type": "llm_rubric", "value": "Deal A's lack of seller financing combined with 'relocating out of state' is flagged as concerning"},
+        {"name": "deal-a-young-business-flag", "type": "llm_rubric", "value": "Deal A's 2020 establishment (~6 years old) is flagged as a concern — not tested through a full economic cycle"},
+        {"name": "deal-b-card-system-positive", "type": "llm_rubric", "value": "Deal B's card system (installed 2021) is highlighted as a positive for verifiable revenue and remote monitoring"},
+        {"name": "deal-b-absentee-advantage", "type": "llm_rubric", "value": "The ranking notes that Deal B (fully unattended laundromat) has a significantly better absentee profile than Deal A for an H1B buyer"},
+        {"name": "ranking-favors-b", "type": "llm_rubric", "value": "The ranking places Deal B above Deal A as the better acquisition for this buyer"}
+      ]
+    }
+  ]
+}

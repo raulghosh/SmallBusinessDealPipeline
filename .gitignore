@@ -1,0 +1,34 @@
+# OS
+.DS_Store
+.DS_Store?
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Node/Python
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Eval workspace outputs (large, can be regenerated)
+skills/*/workspace/
+skills/*/*-workspace/
+
+# Old iterations
+BusinessDealsSanitation/
+
+# Temporary files
+.tmp/
+*.tmp
+*.log
+
+# Environment
+.env
+.env.local

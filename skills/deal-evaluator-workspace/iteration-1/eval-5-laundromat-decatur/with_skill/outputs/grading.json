@@ -1,0 +1,57 @@
+{
+  "eval_id": 5,
+  "eval_name": "Decatur GA coin laundromat",
+  "assertions_total": 8,
+  "assertions_passed": 8,
+  "assertions_failed": 0,
+  "detail": [
+    {
+      "assertion_id": "5.1",
+      "assertion_text": "The output contains all 11 required sections including INTRINSIC VALUE & MARGIN OF SAFETY, SELLER'S AXE, and NEGOTIATION POSITION",
+      "result": "PASS",
+      "evidence": "Output includes all 11 sections: DEAL VITALS, VALUATION ASSESSMENT, INTRINSIC VALUE & MARGIN OF SAFETY, SELLER-SIDE DECODING, SELLER'S AXE, ABSENTEE VIABILITY SCORE, RED FLAGS, GREEN FLAGS, DUE DILIGENCE PRIORITY QUESTIONS, NEGOTIATION POSITION, and BROKER'S VERDICT"
+    },
+    {
+      "assertion_id": "5.2",
+      "assertion_text": "The output applies laundromat-specific multiples (unattended self-service range of 2.5x-4.0x) and correctly calculates the SDE multiple as approximately 3.67x ($385,000 / $105,000)",
+      "result": "PASS",
+      "evidence": "Section 1 (DEAL VITALS) and Section 2 (VALUATION ASSESSMENT) correctly calculate SDE multiple as 3.67x and benchmark against 2.5x-4.0x range for unattended self-service laundromats, rating it as 'FAIR -- upper end'"
+    },
+    {
+      "assertion_id": "5.3",
+      "assertion_text": "The output flags coin-only operation as a critical due diligence concern because revenue cannot be independently verified, and recommends cross-checking with utility bills",
+      "result": "PASS",
+      "evidence": "Section 2 extensively discusses coin-only revenue verification risk. Section 4 (SELLER-SIDE DECODING) explicitly states 'Revenue is unverifiable. Coin-only laundromats produce no transaction logs.' Section 9 includes specific question: 'Can you share 24 months of utility bills -- water, gas, electric, and sewer?' with note 'Water usage correlates directly with wash cycles.'"
+    },
+    {
+      "assertion_id": "5.4",
+      "assertion_text": "The output analyzes the lease (4 years remaining + one 5-year renewal = 9 years max) against equipment payback period",
+      "result": "PASS",
+      "evidence": "Section 3 (INTRINSIC VALUE & MARGIN OF SAFETY) includes 'The 20-Year Test' subsection: 'The current lease has 4 years remaining plus one 5-year renewal option = 9 years maximum.' Section 4 also flags: 'Four years remaining is short. Need to understand: What is the rent? What are the escalation terms?'"
+    },
+    {
+      "assertion_id": "5.5",
+      "assertion_text": "The output flags 'most replaced within last 5 years' as vague language requiring serial numbers and maintenance logs for every machine",
+      "result": "PASS",
+      "evidence": "Section 4 (SELLER-SIDE DECODING) states: 'Equipment condition details are vague. \"Most replaced within last 5 years\" is deliberately imprecise... Without serial numbers and maintenance logs, this claim is unverifiable.' Section 9 includes DQ #2: 'I'm curious about the equipment -- do you have a detailed inventory with serial numbers, brands, and installation dates for each machine?'"
+    },
+    {
+      "assertion_id": "5.6",
+      "assertion_text": "The 20% seller financing at 7% from a 68-year-old retiring owner is recognized as a positive confidence signal",
+      "result": "PASS",
+      "evidence": "Section 5 (SELLER'S AXE) identifies seller as 'Genuine Retiree (High Confidence)' and notes: 'The willingness to carry 20% seller financing at 7% is consistent with a genuine retiree who believes the business will continue to perform (they are betting $77,000 of their own money on it).' Section 8 (GREEN FLAGS) includes 'Seller financing of 20% at 7% over 5 years from a 68-year-old retiree.'"
+    },
+    {
+      "assertion_id": "5.7",
+      "assertion_text": "The ABSENTEE VIABILITY SCORE recognizes unattended self-service laundromat as an excellent absentee model and scores it 7+/10",
+      "result": "PASS",
+      "evidence": "Section 6 (ABSENTEE VIABILITY SCORE) assigns 'Score: 7.5 / 10' and explains: 'the unattended self-service laundromat business model is inherently one of the best models for absentee ownership.' Also includes H1B-specific analysis: 'This business model is well-suited for an H1B passive investor.'"
+    },
+    {
+      "assertion_id": "5.8",
+      "assertion_text": "The output recommends or mentions upgrading to a card/app payment system for revenue verification and remote monitoring",
+      "result": "PASS",
+      "evidence": "Section 11 (BROKER'S VERDICT) recommends: 'Install a card/app payment system (PayRange as a fast, low-cost option at $50-$100/machine, or a full SpyderWash/CSC retrofit at $15,000-$30,000) to establish verifiable revenue and enable remote monitoring.' Also mentioned in Section 6 H1B considerations: 'eliminated by converting to a card/app payment system.'"
+    }
+  ]
+}

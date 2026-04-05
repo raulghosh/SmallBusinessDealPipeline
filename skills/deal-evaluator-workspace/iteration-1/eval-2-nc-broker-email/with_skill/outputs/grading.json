@@ -1,0 +1,45 @@
+{
+  "eval_id": 2,
+  "eval_name": "NC broker email janitorial",
+  "assertions_total": 6,
+  "assertions_passed": 6,
+  "assertions_failed": 0,
+  "detail": [
+    {
+      "assertion_id": "2.1",
+      "assertion_text": "The output contains all 11 required sections including INTRINSIC VALUE & MARGIN OF SAFETY, SELLER'S AXE, and NEGOTIATION POSITION",
+      "result": "PASS",
+      "evidence": "Output contains all 11 sections: DEAL VITALS (Section 1), VALUATION ASSESSMENT (Section 2), INTRINSIC VALUE & MARGIN OF SAFETY (Section 3), SELLER-SIDE DECODING (Section 4), SELLER'S AXE (Section 5), ABSENTEE VIABILITY SCORE (Section 6), RED FLAGS (Section 7), GREEN FLAGS (Section 8), DUE DILIGENCE PRIORITY QUESTIONS (Section 9), NEGOTIATION POSITION (Section 10), and BROKER'S VERDICT (Section 11)."
+    },
+    {
+      "assertion_id": "2.2",
+      "assertion_text": "The output explicitly calls out the absence of year established / founding date as a red flag or concerning omission",
+      "result": "PASS",
+      "evidence": "Section 4 (SELLER-SIDE DECODING) explicitly states: 'Year established: The single most conspicuous omission. If the business has been operating for 15–20 years, the broker would have mentioned it – longevity is a selling point. The omission suggests the business is either younger than 10 years (weaker), or the founding history is complicated.' Also appears in Section 7 RED FLAGS as [CRITICAL]: 'Year established is not disclosed. This is almost never innocent.'"
+    },
+    {
+      "assertion_id": "2.3",
+      "assertion_text": "The output flags the ~0.96x revenue multiple ($709,500 / $739,926) as RICH or at the high end of the typical range",
+      "result": "PASS",
+      "evidence": "Section 1 (DEAL VITALS) explicitly labels the 0.96x revenue multiple as 'RICH' in the Verdict column. Section 2 also states: 'the revenue multiple of 0.96x is above the typical 0.5x–0.8x range for independent commercial cleaning.'"
+    },
+    {
+      "assertion_id": "2.4",
+      "assertion_text": "The output identifies 'true recurring revenue' as seller coaching language that needs to be verified with actual contract terms",
+      "result": "PASS",
+      "evidence": "Section 4 (SELLER-SIDE DECODING) decodes point 3: '\"True recurring revenue business with a dedicated client base\" -- \"Recurring revenue\" is the most overused term in cleaning business sales. It is used even when contracts are verbal, month-to-month, and terminable on 30 days notice.' Section 7 RED FLAGS also emphasizes: 'Contract type not specified. \"Recurring revenue\" without any mention of written contracts, contract terms, or termination clauses suggests verbal or month-to-month agreements.'"
+    },
+    {
+      "assertion_id": "2.5",
+      "assertion_text": "The INTRINSIC VALUE section includes a moat assessment that rates switching costs, local reputation, or other moat types as STRONG, WEAK, or NONE",
+      "result": "PASS",
+      "evidence": "Section 3 (INTRINSIC VALUE & MARGIN OF SAFETY) includes a Moat Assessment table that evaluates: Switching Costs (Presumed STRONG), Local Network Effects (Presumed MODERATE-STRONG), Regulatory Barriers (WEAK), Scale Advantages (MODERATE), and provides an Overall Moat rating of MODERATE (unverified)."
+    },
+    {
+      "assertion_id": "2.6",
+      "assertion_text": "The output raises the question of who manages the 32 part-time employees day-to-day as a key unknown for absentee viability",
+      "result": "PASS",
+      "evidence": "Section 6 (ABSENTEE VIABILITY SCORE) explicitly states in the Management Infrastructure factor: 'No GM or operations manager mentioned. 32 part-time employees managed from a home office almost certainly means the owner is the sole point of management.' Section 9 (DUE DILIGENCE PRIORITY QUESTIONS) Question 4 directly asks: 'Who manages the day-to-day operations – scheduling, dispatch, quality checks? Is there a manager or lead supervisor on the team?' Also flagged in Section 5 (SELLER'S AXE) and Section 7 (RED FLAGS) as critical missing infrastructure."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "eval_id": 3,
+  "eval_name": "Two-deal janitorial comparison",
+  "assertions_total": 6,
+  "assertions_passed": 6,
+  "assertions_failed": 0,
+  "detail": [
+    {
+      "assertion_id": "3.1",
+      "assertion_text": "The output includes a separate evaluation memo for Deal A, a separate evaluation memo for Deal B, and a final comparative ranking section",
+      "result": "PASS",
+      "evidence": "Output contains 'DEAL A -- Upper East Tennessee Commercial Cleaning' with full 11-section memo, 'DEAL B -- 65-Year-Old Commercial Cleaning Business' with full 11-section memo, and 'COMPARATIVE RANKING' section with detailed analysis and recommendations."
+    },
+    {
+      "assertion_id": "3.2",
+      "assertion_text": "Deal A's SDE multiple of approximately 4.03x is flagged as RICH or at the very top of the acceptable range",
+      "result": "PASS",
+      "evidence": "In VALUATION ASSESSMENT section: 'At $1,199,000 with SDE of $296,933, the SDE multiple is 4.04x. The fair market range for stable, recurring-revenue commercial cleaning businesses is 2.5x-3.0x SDE, with premium deals reaching 3.0x-3.5x SDE.' Explicitly labeled as 'RICH -- OVERPRICED' in Deal Vitals table."
+    },
+    {
+      "assertion_id": "3.3",
+      "assertion_text": "The unconfirmed franchise status for Deal A is treated as a critical flag that must be resolved",
+      "result": "PASS",
+      "evidence": "RED FLAGS section lists as [CRITICAL]: 'Franchise status \"not confirmed\" -- For this buyer, any franchise is an automatic disqualification. This must be resolved in the first communication.' Also in DEAL VITALS table: 'FLAG -- must confirm before proceeding' and DUE DILIGENCE PRIORITY QUESTION #1 specifically addresses franchise confirmation as threshold requirement."
+    },
+    {
+      "assertion_id": "3.4",
+      "assertion_text": "Deal B's ~65 years in business is highlighted as a major positive signal",
+      "result": "PASS",
+      "evidence": "GREEN FLAGS section lists as first and strongest flag: '65 years in business is extraordinary. This is the single strongest green flag in either deal. This business has survived the 1970s recession, the 1980s savings and loan crisis, the early 2000s downturn, the 2008 financial crisis, and COVID-19.' Also highlighted in COMPARATIVE RANKING table and throughout Deal B evaluation."
+    },
+    {
+      "assertion_id": "3.5",
+      "assertion_text": "Both deal memos include a NEGOTIATION POSITION section with BATNA analysis and recommended approach",
+      "result": "PASS",
+      "evidence": "Deal A contains section 10 'NEGOTIATION POSITION' with BATNA Assessment, Recommended Opening Offer Range table, Deal Structure Recommendation, Concession Strategy, and Walkaway Price. Deal B contains identical section 10 'NEGOTIATION POSITION' with BATNA Assessment, Recommended Opening Offer Range table, Deal Structure Recommendation, and Walkaway Price."
+    },
+    {
+      "assertion_id": "3.6",
+      "assertion_text": "The comparative ranking places Deal B above Deal A as the preferred option if it becomes available",
+      "result": "PASS",
+      "evidence": "COMPARATIVE RANKING section conclusion: 'Pursue Deal B as the primary target. Use Deal A only as pipeline filler.' and 'Deal B is the superior deal on every structural dimension except immediate availability' and final rank shows Deal B with 'PURSUE WITH CONDITIONS' verdict vs Deal A with 'GATHER MORE INFO' verdict."
+    }
+  ]
+}

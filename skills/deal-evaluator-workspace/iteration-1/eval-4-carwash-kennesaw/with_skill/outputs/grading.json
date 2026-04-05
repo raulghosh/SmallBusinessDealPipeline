@@ -1,0 +1,57 @@
+{
+  "eval_id": 4,
+  "eval_name": "Kennesaw GA express car wash",
+  "assertions_total": 8,
+  "assertions_passed": 8,
+  "assertions_failed": 0,
+  "detail": [
+    {
+      "assertion_id": "4.1",
+      "assertion_text": "has-all-11-sections: The output contains all 11 required sections including INTRINSIC VALUE & MARGIN OF SAFETY, SELLER'S AXE, and NEGOTIATION POSITION",
+      "result": "PASS",
+      "evidence": "Output clearly contains all 11 sections: (1) DEAL VITALS, (2) VALUATION ASSESSMENT, (3) INTRINSIC VALUE & MARGIN OF SAFETY, (4) SELLER-SIDE DECODING, (5) SELLER'S AXE, (6) ABSENTEE VIABILITY SCORE, (7) RED FLAGS, (8) GREEN FLAGS, (9) DUE DILIGENCE PRIORITY QUESTIONS, (10) NEGOTIATION POSITION, and (11) BROKER'S VERDICT"
+    },
+    {
+      "assertion_id": "4.2",
+      "assertion_text": "correct-carwash-multiples: The output applies car wash-specific SDE multiples (express/tunnel range of 3.0x-4.5x) and correctly calculates the SDE multiple as approximately 4.4x ($1,850,000 / $420,000)",
+      "result": "PASS",
+      "evidence": "In DEAL VITALS, output states: 'SDE Multiple | 4.40x | Express/tunnel: 3.0x-4.5x | RICH -- at ceiling of range'. Math verification: $1,850,000 / $420,000 = 4.40x. Benchmark range correctly applied throughout."
+    },
+    {
+      "assertion_id": "4.3",
+      "assertion_text": "membership-scrutiny: The output scrutinizes the '800+ active members' claim, asking about churn rate, whether these are truly active, and what percentage of revenue comes from memberships",
+      "result": "PASS",
+      "evidence": "SELLER-SIDE DECODING extensively scrutinizes 800+ members: 'What does \"active\" mean?... What is the monthly churn rate?... What percentage of the $1.2M revenue comes from memberships?' and calculates 'If 800 members pay an average of $40/month, that is $384,000/year, or 32% of revenue.' Also appears in DUE DILIGENCE PRIORITY QUESTIONS #1 and #2."
+    },
+    {
+      "assertion_id": "4.4",
+      "assertion_text": "equipment-age-assessment: The output assesses the tunnel equipment installed in 2019 against equipment lifespan benchmarks and flags replacement capex risk",
+      "result": "PASS",
+      "evidence": "Output explicitly states: 'Express tunnel systems have a 10-15 year lifespan with a major rebuild recommended at 7-10 years. The 2019-installed system is now entering the zone where significant maintenance and component replacement costs begin to escalate.' Detailed capex analysis provided: 'Total rebuild cost: $500K-$1.5M over the next 3-8 years.' Flagged as [CRITICAL] in RED FLAGS section."
+    },
+    {
+      "assertion_id": "4.5",
+      "assertion_text": "pursuing-other-ventures-decoded: The SELLER'S AXE or SELLER-SIDE DECODING section decodes 'pursuing other business ventures' as a non-retirement reason that warrants scrutiny",
+      "result": "PASS",
+      "evidence": "SELLER'S AXE section explicitly decodes the seller: 'Seller Archetype: Likely Burnout or Strategic Exiter -- NOT a Genuine Retiree... This seller does not fit the Genuine Retiree profile.' Later states: 'Most probable: The seller has done the math on upcoming equipment replacement CapEx and decided that selling at a 4.4x multiple now is more profitable than spending $500K-$1.5M on a tunnel rebuild in 3-5 years.' Also identifies as [MODERATE] red flag."
+    },
+    {
+      "assertion_id": "4.6",
+      "assertion_text": "absentee-score-express-model: The ABSENTEE VIABILITY SCORE recognizes that express/tunnel car wash is one of the better absentee models and scores accordingly (likely 6-8/10)",
+      "result": "PASS",
+      "evidence": "ABSENTEE VIABILITY SCORE section assigns: 'Score: 7 / 10' with explanation 'The express tunnel model is inherently one of the best absentee car wash models, scoring 7-9/10 in the absentee framework.' Score of 7/10 falls within the expected range of 6-8/10 and explicitly recognizes the model quality."
+    },
+    {
+      "assertion_id": "4.7",
+      "assertion_text": "real-estate-separation-flagged: The output flags the separate real estate pricing ($2.1M) as an important consideration and analyzes the business independently",
+      "result": "PASS",
+      "evidence": "DEAL VITALS table flags: 'Real Estate | Available separately for $2,100,000 | -- | FLAG -- must evaluate separately'. Section 3 (INTRINSIC VALUE) analyzes the business independently. NEGOTIATION POSITION section states: 'On the real estate: If the buyer also acquires the RE, negotiate separately. The $2.1M asking price should be independently appraised.' Also flagged as [CRITICAL] in RED FLAGS."
+    },
+    {
+      "assertion_id": "4.8",
+      "assertion_text": "sde-multiple-above-range: The ~4.4x SDE multiple is flagged as above the typical express/tunnel range and labeled RICH or at the ceiling",
+      "result": "PASS",
+      "evidence": "Output consistently flags the multiple as RICH: DEAL VITALS shows 'SDE Multiple | 4.40x | Express/tunnel: 3.0x-4.5x | RICH -- at ceiling of range'. VALUATION ASSESSMENT reiterates: 'At 4.40x, this listing is priced at the ceiling of that range.' NEGOTIATION POSITION confirms: 'The buyer is being asked to pay premium pricing without premium evidence.' Final verdict: 'labeled RICH or at the ceiling'."
+    }
+  ]
+}
