@@ -1,0 +1,84 @@
+{
+  "skill": "market-scanner",
+  "description": "Market scanner skill discovers and filters business listings from broker emails. Tests email parsing, metadata extraction, buyer profile filtering, and ingest workflow.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "Basic email ingestion — single deal",
+      "prompt": "Simulate receiving a broker email with a laundromat listing. Email body:\n\nFrom: sarahb@brightbrokers.com\nSubject: Decatur Laundromat - $350K Revenue - GA\n\nI have an excellent laundromat opportunity in Decatur, GA.\n\nBusiness: Decatur Laundromat (27 machines, fully attended)\nLocation: Decatur, GA\nAnnual Revenue: $350,000 (TTM)\nOwner Salary: $45,000\nAdjusted Earnings: $105,000\nAskng Price: $385,000\n\nThe equipment is in good shape - most machines replaced 2019-2023.\nLease is strong: 4 years remaining with one 5-year renewal option.\n\nCurrently run by owner + 1 PT attendant (20 hrs/week).\n\nSarah Brown\nBright Business Brokerage\nsarah@brightbrokers.com | 770-555-1234\n\nPerform a scan that discovers this deal. Extract all fields, check against buyer filters, and ingest to DISCOVERED state.",
+      "assertions": [
+        {"id": "1.1", "text": "Deal extracted with correct business name: 'Decatur Laundromat'"},
+        {"id": "1.2", "text": "Revenue extracted as $350,000"},
+        {"id": "1.3", "text": "SDE extracted as $105,000 (or calculated from owner add-back)"},
+        {"id": "1.4", "text": "Asking price extracted as $385,000"},
+        {"id": "1.5", "text": "SDE multiple calculated as 3.67x (within 2.5-4.0x laundromat range)"},
+        {"id": "1.6", "text": "Broker contact extracted: Sarah Brown, sarahb@brightbrokers.com"},
+        {"id": "1.7", "text": "Deal passes all 6 disqualifiers (not franchise, revenue in range, vertical=laundromat, geography=GA, passive-eligible, data complete)"},
+        {"id": "1.8", "text": "Deal written to DISCOVERED state with deal ID format DISCOVERY-{date}-{initials}"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Multiple deals in single email thread",
+      "prompt": "Simulate receiving an email from a broker with 3 listings:\n\nFrom: mike.chen@southeastbrokers.com\nSubject: New Opportunities - 3 Listings Available\n\n1. Janitorial Service, Atlanta GA\n   Revenue: $420K | SDE: $130K | Asking: $420K\n   8 crews, strong client base, established 2015\n   Contact: mike.chen@southeastbrokers.com\n\n2. Car Wash Express, Jacksonville FL\n   Revenue: $1.85M | SDE: $420K | Asking: $1.85M\n   12-bay express tunnel, memberships + walk-ins\n   Equipment installed 2019, excellent condition\n   Manager on-site, passive operation possible\n   \n3. Residential Cleaning Network, Charlotte NC\n   Revenue: $280K | SDE: $70K | Asking: $220K\n   All residential clients (maid service style)\n   Would require owner involvement\n   \nPerform scan to extract all 3, check filters, report which pass/fail.",
+      "assertions": [
+        {"id": "2.1", "text": "Deal 1 (Janitorial, Atlanta): Extracted correctly, passes all filters, ingested as DISCOVERED"},
+        {"id": "2.2", "text": "Deal 1: SDE multiple calculated as 3.23x (within 2.5-3.5x janitorial range)"},
+        {"id": "2.3", "text": "Deal 2 (Car Wash, Jacksonville): Extracted correctly, passes all filters, ingested as DISCOVERED"},
+        {"id": "2.4", "text": "Deal 2: SDE multiple calculated as 4.4x (within 3.0-4.5x car wash range)"},
+        {"id": "2.5", "text": "Deal 3 (Residential Cleaning, Charlotte): FILTERED OUT — reason: 'not_passive_eligible' (requires owner involvement)"},
+        {"id": "2.6", "text": "Scan log reports: 3 candidates, 2 ingested, 1 filtered, 1 disqualification reason recorded"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Franchise disqualifier — catches FDD language",
+      "prompt": "Email from broker:\n\nFrom: franchise.broker@franchiseopportunities.com\nSubject: JAN-PRO Franchise - Atlanta Area\n\nExcellent Jan-Pro cleaning franchise opportunity.\nFranchise Fee: $50,000\nTerritorial rights to Atlanta metro\nEstablished brand with FDD and comprehensive support\nEstimated Revenue: $350K | SDE estimate: $85K\nAsking Price (territory + training): $280,000\n\nJan-Pro is America's #1 commercial cleaning franchise...\n\nPerform scan on this opportunity.",
+      "assertions": [
+        {"id": "3.1", "text": "Deal flagged as franchise (keywords: 'Jan-Pro', 'franchise', 'FDD', 'territorial rights')"},
+        {"id": "3.2", "text": "Deal FILTERED OUT with disqualification reason: 'franchise'"},
+        {"id": "3.3", "text": "Deal NOT written to deals.json (disqualified, not ingested)"},
+        {"id": "3.4", "text": "Scan log notes: 1 candidate, 0 ingested, 1 filtered, disqualification: 'franchise'"}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Revenue out of range — ceiling exceeded",
+      "prompt": "Email from broker:\n\nFrom: highend.broker@premiumbrokers.com\nSubject: Large Commercial Janitorial Portfolio - Multi-State\n\nRegional janitorial portfolio for sale.\nOperations in 6 states, 35+ crews.\nCurrent Annual Revenue: $6.2M\nAdjusted EBITDA: $1.8M\nAsking Price: $8.5M\nOwner transitioning to other ventures.\n\nVery profitable, well-managed operation...\n\nPerform scan on this opportunity.",
+      "assertions": [
+        {"id": "4.1", "text": "Deal extracted: revenue = $6.2M, asking = $8.5M"},
+        {"id": "4.2", "text": "Disqualifier 2 triggered: Revenue $6.2M exceeds ceiling of $3M"},
+        {"id": "4.3", "text": "Deal FILTERED OUT with disqualification reason: 'revenue_above_ceiling'"},
+        {"id": "4.4", "text": "Deal NOT written to deals.json"},
+        {"id": "4.5", "text": "Scan log notes: 1 candidate, 0 ingested, 1 filtered, disqualification: 'revenue_above_ceiling'"}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Data quality check — missing critical field",
+      "prompt": "Email from broker:\n\nFrom: quick.sale@fastbrokers.com\nSubject: Laundromat Available\n\nGreat opportunity! Laundromat in good location.\nRevenue estimated around $300K-$350K annually.\nOwner selling due to health reasons.\n\nWe have another listing, so moving this fast.\nLet me know if interested.\n\nNo specific revenue, no asking price, broker signature missing exact email.\n\nPerform scan on this opportunity.",
+      "assertions": [
+        {"id": "5.1", "text": "Deal extracted: business type = laundromat, location = unclear (no city/state)"},
+        {"id": "5.2", "text": "Revenue is estimated range ($300K-$350K), not exact — flagged as unclear"},
+        {"id": "5.3", "text": "Asking price missing entirely"},
+        {"id": "5.4", "text": "Broker email incomplete (no full contact info)"},
+        {"id": "5.5", "text": "Disqualifier 6 triggered: Critical data missing (asking price, broker contact)"},
+        {"id": "5.6", "text": "Deal FILTERED OUT with disqualification reason: 'incomplete_data'"},
+        {"id": "5.7", "text": "Scan log notes recommendation: 'Request full CIM and clarification from broker before ingesting'"}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "List mode — manual review, user approval before ingest",
+      "prompt": "User says: 'scan for laundromats and show me results before adding to pipeline'\n\nSimulate a scan finding 2 laundromat deals:\n- Deal A: Decatur Laundromat, GA, $350K revenue, $385K asking\n- Deal B: Atlanta Laundromat, GA, $580K revenue, $650K asking\n\nBoth pass filters.\n\nOutput scan results in manual-review mode (don't auto-ingest), showing both deals with key metrics, asking for user approval.",
+      "assertions": [
+        {"id": "6.1", "text": "Output presents both deals in a readable format with business name, location, revenue, asking price, SDE multiple"},
+        {"id": "6.2", "text": "Output notes both deals passed buyer filters"},
+        {"id": "6.3", "text": "Output explicitly asks user: 'Approve and ingest both? (yes/no)' OR 'Review individually?'"},
+        {"id": "6.4", "text": "Deals NOT yet written to deals.json (pending user approval)"},
+        {"id": "6.5", "text": "If user responds 'yes', both deals ingested as DISCOVERED"},
+        {"id": "6.6", "text": "If user responds 'no' or wants individual review, skill pauses for user selection before ingesting"}
+      ]
+    }
+  ]
+}

@@ -21,7 +21,7 @@ When the user returns after a break, summarize: how many active deals, what stat
 | Stage | Trigger | Skill to Invoke | Next State |
 |-------|---------|-----------------|------------|
 | Vet brokers | User says "find brokers" / "vet broker" / "is [X] legit" | /broker-vetter | (no deal state change) |
-| Monthly scan | User says "scan" or "find deals" | /market-scan | DISCOVERED |
+| Monthly scan | User says "scan" or "find deals" | /market-scanner | DISCOVERED |
 | Evaluate discovered deals | User selects deals to analyze | /deal-evaluator | ANALYZED |
 | Market overlay | After deal evaluation completes | /market-intel (auto) | (stays ANALYZED) |
 | Rank and shortlist | User reviews memos, picks top N | Manual user decision | SHORTLISTED |
