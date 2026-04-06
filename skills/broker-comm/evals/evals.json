@@ -1,0 +1,215 @@
+{
+  "skill": "broker-comm",
+  "version": "1.0",
+  "description": "Evaluates the broker-comm skill on synthetic deal and communication scenarios to test draft quality, reply detection logic, follow-up timing, satisfaction assessment, and pass sequencing.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "Draft initial outreach — SHORTLISTED deal, broker not yet contacted",
+      "mode": "DRAFT_INITIAL_OUTREACH",
+      "prompt": "Draft an outreach email for this deal:\n\n**Deal Name:** Triangle Sparkle Janitorial\n**Deal ID:** DEAL-004 (internal only)\n**State:** SHORTLISTED\n**Broker:** Mark Hendricks, Southeast Business Sales\n**Broker Email:** mhendricks@sebiz.com\n**Listing Source:** BizBuySell\n**Business Type:** Commercial janitorial cleaning\n**Location:** Raleigh, NC\n**Asking Price:** $1,200,000\n**Revenue:** $820,000\n**SDE:** $310,000\n**SDE Multiple:** 3.87x\n**Key Listing Details:** 12-year-old business, 47 commercial contracts, absentee-operated per broker, 8 employees\n**Broker Vetting:** Mark Hendricks / Southeast Business Sales was vetted on 2026-03-15. Score: 16/20 (Tier 1). PROCEED verdict.\n**Communications Array:** [] (empty — no prior contact)\n\nDraft the initial outreach email. Do not send it.",
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Output shows full draft email text (subject line + body) before any action is taken"
+        },
+        {
+          "id": "1.2",
+          "text": "Email is NOT sent and NOT saved as a Gmail draft without explicit user approval — skill asks for confirmation"
+        },
+        {
+          "id": "1.3",
+          "text": "NDA is requested in the email body"
+        },
+        {
+          "id": "1.4",
+          "text": "Draft references specific deal details: business type (janitorial), asking price ($1,200,000), location (Raleigh NC), or the 12-year tenure — NOT generic boilerplate"
+        },
+        {
+          "id": "1.5",
+          "text": "Internal deal ID (DEAL-004) does NOT appear anywhere in the draft email text"
+        },
+        {
+          "id": "1.6",
+          "text": "No mention of visa status, H1B, immigration, or work authorization in the draft"
+        },
+        {
+          "id": "1.7",
+          "text": "Output notes that deal state would move to CONTACTING once the email is sent (not when drafted)"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Check replies — 2 CONTACTING deals, 1 has reply, 1 silent 8 days",
+      "mode": "CHECK_REPLIES",
+      "prompt": "Check for broker replies on all active deals.\n\n**Active Deals in CONTACTING state:**\n\nDeal A: Peach State Washers (laundromat, Atlanta, GA)\n- Broker: Sandra Lee, slee@atlantabiz.com\n- Initial email sent: 2026-03-28 (8 days ago from today 2026-04-05)\n- gmail_thread_id: thread_abc123\n- No follow-up sent yet\n\nDeal B: Carolina Suds Laundry (laundromat, Charlotte, NC)\n- Broker: David Park, dpark@carolinabiz.com\n- Initial email sent: 2026-04-01 (4 days ago from today 2026-04-05)\n- gmail_thread_id: thread_def456\n\n**Gmail search results (simulated):**\n- thread_abc123: 2 messages — 1 outbound from buyer (2026-03-28), 1 inbound from Sandra Lee (2026-04-03) with subject 'Re: Acquisition Inquiry — Laundromat, Atlanta GA' — body: 'Hi, thanks for reaching out. NDA attached. Please sign and return and I'll get you the CIM.'\n- thread_def456: 1 message — 1 outbound from buyer (2026-04-01). No reply.\n\nSummarize the reply status for all CONTACTING deals.",
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Output shows a summary table or structured list covering both deals with reply status, days waiting, and broker names"
+        },
+        {
+          "id": "2.2",
+          "text": "Peach State Washers (Deal A) is correctly identified as REPLIED with the reply date 2026-04-03 noted"
+        },
+        {
+          "id": "2.3",
+          "text": "Carolina Suds Laundry (Deal B) is correctly identified as SILENT with 4 days of silence noted"
+        },
+        {
+          "id": "2.4",
+          "text": "Deal A reply content is summarized: NDA was attached, CIM is pending NDA signature"
+        },
+        {
+          "id": "2.5",
+          "text": "Deal B (silent 4 days) is NOT flagged at the 14-day threshold level — it may be noted as within normal range"
+        },
+        {
+          "id": "2.6",
+          "text": "Output suggests next action for Deal A: user should sign NDA to receive CIM (or similar actionable next step)"
+        },
+        {
+          "id": "2.7",
+          "text": "Output calls gmail_search_messages or gmail_read_thread to check for replies — does not assume from memory"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Follow-up nudge — deal CONTACTING for 12 days with no reply",
+      "mode": "DRAFT_FOLLOW_UP",
+      "prompt": "Draft a follow-up email for this deal.\n\n**Deal Name:** Gulf Coast Clean Pro (janitorial, Tampa, FL)\n**State:** CONTACTING\n**Broker:** James Whitfield, jwhitfield@gulfbiz.com\n**Initial email sent:** 2026-03-24 (12 days ago from today 2026-04-05)\n**Communications array:** [\n  {\n    'date': '2026-03-24',\n    'direction': 'outbound',\n    'type': 'inquiry',\n    'subject': 'Acquisition Inquiry — Commercial Janitorial, Tampa FL',\n    'summary': 'Initial outreach, NDA requested, asked 3 deal-specific questions.',\n    'status': 'sent',\n    'gmail_thread_id': 'thread_ghi789'\n  }\n]\n**No inbound messages from broker.**\n\nDraft a follow-up nudge. Do not send it.",
+      "assertions": [
+        {
+          "id": "3.1",
+          "text": "Output shows full draft email text (subject line + body) before any action"
+        },
+        {
+          "id": "3.2",
+          "text": "Email is NOT sent and NOT saved as Gmail draft without explicit user approval"
+        },
+        {
+          "id": "3.3",
+          "text": "Draft references the number of days since first contact (12 days) explicitly, or references the original email date"
+        },
+        {
+          "id": "3.4",
+          "text": "Tone is professional and brief — does not contain pressure language, ultimatums, or expressions of frustration"
+        },
+        {
+          "id": "3.5",
+          "text": "Draft is under 100 words (Follow-Up Nudge protocol requirement)"
+        },
+        {
+          "id": "3.6",
+          "text": "Subject line uses 'Re:' prefix with the original subject line to keep the email in-thread"
+        },
+        {
+          "id": "3.7",
+          "text": "Output does NOT trigger the 14-day CAUTION block because 12 days is below the 14-day escalation threshold (or if it does, threshold is correctly identified as 14 days)"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Satisfaction check — ready to meet, all critical questions answered",
+      "mode": "SATISFACTION_CHECK",
+      "prompt": "Run a satisfaction check on this deal.\n\n**Deal Name:** Blue Ridge Shine (car wash, Asheville, NC)\n**Business Type:** Tunnel car wash\n**State:** IN_DILIGENCE\n**Broker:** Cathy Nguyen, cnguyen@mountainbiz.com\n**gmail_thread_id:** thread_jkl012\n\n**Thread summary (simulated gmail_read_thread result):**\n- Round 1 questions sent 2026-03-10\n- Broker replied 2026-03-13:\n  * Confirmed TTM revenue $1.1M and SDE $420K with add-back detail (owner salary $95K, personal auto $18K, one-time equipment repair $22K)\n  * 3-year P&L and tax returns sent as attachments\n  * Confirmed manager (Marcus, 4 years tenure) in place and willing to stay\n  * Owner works approx 5 hours/week, mostly reviews reports\n  * Lease: 7 years remaining, $8,200/month base rent, option for 2x5yr renewal, assignment clause confirmed\n  * 1,240 active monthly unlimited memberships at $35/month avg\n  * Annual churn rate ~22% on memberships\n  * No pending lawsuits, all permits current and transferable\n  * Water reclaim system in place, no open EPA issues\n\n**Open items NOT yet addressed:**\n- Top 5 customers / concentration (N/A for car wash — membership model, no single large customer)\n- Equipment age and maintenance records (not yet asked)\n\nIs this deal ready for a seller intro call?",
+      "assertions": [
+        {
+          "id": "4.1",
+          "text": "Verdict is READY_TO_MEET"
+        },
+        {
+          "id": "4.2",
+          "text": "Output shows a structured table or list mapping which diligence categories have been asked and answered"
+        },
+        {
+          "id": "4.3",
+          "text": "Confirmed items are explicitly listed: SDE verification, add-backs, manager in place, lease terms, membership count, no legal issues"
+        },
+        {
+          "id": "4.4",
+          "text": "Equipment age gap is noted but correctly classified as non-blocking for READY_TO_MEET (minor gap addressable in the meeting)"
+        },
+        {
+          "id": "4.5",
+          "text": "Output offers to draft a Serious Interest Letter (Template 4) or request for seller meeting as the recommended next action"
+        },
+        {
+          "id": "4.6",
+          "text": "Output uses gmail_read_thread to retrieve thread context — does not rely on memory alone"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Satisfaction check — NOT ready, two critical gaps remain",
+      "mode": "SATISFACTION_CHECK",
+      "prompt": "Run a satisfaction check on this deal.\n\n**Deal Name:** Sunshine Commercial Cleaning (janitorial, Orlando, FL)\n**Business Type:** Commercial janitorial\n**State:** IN_DILIGENCE\n**Broker:** Tony Ramirez, tramirez@sunshinebiz.com\n**gmail_thread_id:** thread_mno345\n\n**Thread summary (simulated gmail_read_thread result):**\n- Round 1 questions sent 2026-03-15\n- Broker replied 2026-03-18:\n  * TTM revenue $730K confirmed\n  * SDE stated as $245K — add-backs mentioned as 'owner salary and some personal expenses' but no line-item detail provided\n  * Confirmed 6 full-time employees and 1 part-time supervisor\n  * Owner works 20-25 hours/week, handles all client relationships personally\n  * Lease: confirmed $4,500/month rent but expiration date 'will be confirmed' — never followed up\n  * No lawsuits confirmed\n\n**Open items:**\n- SDE add-back detail: stated but not itemized (critical gap)\n- Customer concentration: never asked or answered — top 5 customers + percentages unknown\n- Lease expiry and assignment clause: broker promised to confirm but never did\n- Owner works 20-25 hrs/week and handles all client relationships personally — major absentee concern flagged\n\nIs this deal ready for a seller intro call?",
+      "assertions": [
+        {
+          "id": "5.1",
+          "text": "Verdict is NOT_READY"
+        },
+        {
+          "id": "5.2",
+          "text": "All unresolved gaps are explicitly listed: SDE add-backs not itemized, customer concentration unknown, lease expiry unconfirmed"
+        },
+        {
+          "id": "5.3",
+          "text": "Owner dependence (20-25 hrs/week, personal client relationships) is flagged as a critical concern for an absentee buyer"
+        },
+        {
+          "id": "5.4",
+          "text": "Output offers to draft a targeted follow-up email addressing specifically the identified gaps (not a generic follow-up)"
+        },
+        {
+          "id": "5.5",
+          "text": "The draft follow-up email (if shown) pulls specific questions from diligence_question_bank.md categories: F3 (add-back itemization), C1 (customer concentration), L1 (lease expiry and assignment)"
+        },
+        {
+          "id": "5.6",
+          "text": "Output does NOT recommend moving to READY_TO_MEET or suggest a seller call"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Soft pass — user decides to pass on deal in CONTACTING state",
+      "mode": "DRAFT_INITIAL_OUTREACH (pass variant)",
+      "prompt": "I want to pass on this deal. Draft the appropriate email to the broker.\n\n**Deal Name:** Magnolia Washout (car wash, Birmingham, AL)\n**Deal ID:** DEAL-007 (internal only)\n**State:** CONTACTING\n**Broker:** Patricia Wells, pwells@magnoliabrokers.com\n**Initial email sent:** 2026-03-20\n**Broker replied:** 2026-03-22 with NDA — buyer has not yet signed\n**Reason for passing:** After reviewing the financials more carefully, the SDE multiple at asking price is 4.9x — too rich given equipment age. Not worth pursuing further.\n\nDraft a soft pass email. The broker has been professional and responsive. Keep the door open.",
+      "assertions": [
+        {
+          "id": "6.1",
+          "text": "Output shows full draft email text (subject line + body) before any action"
+        },
+        {
+          "id": "6.2",
+          "text": "Email is NOT sent and NOT saved as Gmail draft without explicit user approval — skill asks for confirmation"
+        },
+        {
+          "id": "6.3",
+          "text": "Tone is professional and appreciative — does not contain criticism of the business, the price, or the broker"
+        },
+        {
+          "id": "6.4",
+          "text": "Email keeps the door open for future deals — contains language inviting the broker to share future listings in the target vertical/region"
+        },
+        {
+          "id": "6.5",
+          "text": "The reason for passing ('SDE multiple too high', '4.9x', or the specific valuation rationale) does NOT appear in the draft email text sent to the broker"
+        },
+        {
+          "id": "6.6",
+          "text": "Internal deal ID (DEAL-007) does NOT appear in the draft email text"
+        },
+        {
+          "id": "6.7",
+          "text": "Output notes that deal state would move to PASSED pending user approval to send the email"
+        }
+      ]
+    }
+  ]
+}

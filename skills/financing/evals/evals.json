@@ -1,0 +1,205 @@
+{
+  "skill": "financing",
+  "version": "1.0",
+  "description": "Tests the financing skill on synthetic deal scenarios to verify DSCR calculations, H1B flag detection, structure recommendations, SBA eligibility assessments, and loan package guidance.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "Clean DSCR pass — laundromat",
+      "prompt": "Run financing analysis on this deal:\n\nBusiness: Sunshine Coin Laundry\nType: Unattended laundromat\nAsking price: $650,000\nSDE: $175,000\nAnnual revenue: $210,000\nDeal state: SHORTLISTED\nNotes: Owner-operated but business runs largely unattended. 3 washers and 2 dryers need replacement within 18 months (estimated $35K cost). Lease has 7 years remaining with 2 five-year options.",
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "DSCR is calculated as approximately 1.32x (within ±0.05x) — using $585K loan at 10.5%/10yr, $50K GM salary, Adjusted NOI $125K, annual debt service ~$94,632"
+        },
+        {
+          "id": "1.2",
+          "text": "DSCR status is PASS (≥1.25x)"
+        },
+        {
+          "id": "1.3",
+          "text": "SBA 7(a) Primary is the recommended structure (not hybrid — DSCR passes without seller note)"
+        },
+        {
+          "id": "1.4",
+          "text": "Equity injection is $65,000 (10% of $650K asking price)"
+        },
+        {
+          "id": "1.5",
+          "text": "Live Oak Bank is explicitly named as the recommended lender for laundromat deals"
+        },
+        {
+          "id": "1.6",
+          "text": "H1B flag is raised: GM must be identified and hired before loan closes (US citizen or permanent resident)"
+        },
+        {
+          "id": "1.7",
+          "text": "Cash-on-cash return is calculated and is strong (approximately 40-50% range)"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Marginal DSCR — seller financing needed (janitorial)",
+      "prompt": "Run financing analysis on this deal:\n\nBusiness: Spartan Commercial Cleaning\nType: Commercial janitorial / cleaning services\nAsking price: $1,200,000\nSDE: $250,000\nAnnual revenue: $900,000\nDeal state: SHORTLISTED\nNotes: Owner manages crews and client relationships personally. 8 recurring commercial contracts, largest client is 28% of revenue. No existing GM. Seller has not mentioned seller financing.",
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "DSCR at SBA Primary only (90% loan) is calculated as approximately 1.07x — showing this fails the 1.25x minimum"
+        },
+        {
+          "id": "2.2",
+          "text": "SBA Primary is flagged as FAIL or MARGINAL status, with specific note that DSCR is below the 1.25x SBA minimum"
+        },
+        {
+          "id": "2.3",
+          "text": "Hybrid structure (seller note) is recommended as the fix to improve DSCR"
+        },
+        {
+          "id": "2.4",
+          "text": "Output shows the revised DSCR under hybrid structure (with seller carrying 15-20% of price)"
+        },
+        {
+          "id": "2.5",
+          "text": "Output includes a maximum financeable price calculation (reverse DSCR) showing the price at which this deal becomes approvable — expected around $960K-$1.1M"
+        },
+        {
+          "id": "2.6",
+          "text": "H1B CRITICAL flag is raised: owner personally manages crews and client relationships — buyer cannot perform these duties, GM is mandatory before close"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "H1B flags — owner-operated with no staff",
+      "prompt": "Run financing analysis on this deal:\n\nBusiness: Premier Window & Floor Care\nType: Commercial cleaning / janitorial\nAsking price: $480,000\nSDE: $145,000\nAnnual revenue: $320,000\nDeal state: SHORTLISTED\nNotes: Sole operator — owner does all cleaning work personally, handles all scheduling, bids on new accounts, and manages all client relationships. Zero employees. Owner states he works 50 hours/week and the business 'runs itself when clients are on autopilot.' Owner is selling due to health issues.",
+      "assertions": [
+        {
+          "id": "3.1",
+          "text": "At least one CRITICAL H1B flag is raised: owner is sole operator doing all work, and H1B buyer cannot perform these operational duties"
+        },
+        {
+          "id": "3.2",
+          "text": "Required condition explicitly states: hire a qualified US citizen/permanent resident GM before close — framed as a financing prerequisite, not just a general concern"
+        },
+        {
+          "id": "3.3",
+          "text": "Output notes that the GM cost significantly impacts DSCR — the business must support a GM salary in addition to debt service"
+        },
+        {
+          "id": "3.4",
+          "text": "DSCR is calculated using the H1B-adjusted formula: SDE minus GM salary before dividing by debt service"
+        },
+        {
+          "id": "3.5",
+          "text": "Output flags or notes the key-person risk: if owner does all the work and has all client relationships, the SBA lender will question whether the business survives ownership transfer"
+        },
+        {
+          "id": "3.6",
+          "text": "SBA eligibility assessment is UNCERTAIN or UNLIKELY (not LIKELY) given the owner-operator structure and key-person risk combined with H1B passive requirement"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Strong deal — car wash with membership revenue",
+      "prompt": "Run financing analysis on this deal:\n\nBusiness: Clearwater Express Car Wash\nType: Express car wash (IBA — in-bay automatic)\nAsking price: $1,850,000\nSDE: $420,000\nAnnual revenue: $680,000\nDeal state: SHORTLISTED\nNotes: 2,400 active monthly members at $29.99/mo unlimited wash = $72,000/mo recurring revenue. On-site manager already employed at $58,000/yr (already deducted from SDE). Equipment is 4 years old, well-maintained. Lease is 12 years remaining with options. Real estate not included in deal.",
+      "assertions": [
+        {
+          "id": "4.1",
+          "text": "DSCR is calculated as STRONG PASS (≥1.35x) — given $420K SDE with GM already in financials and $1.665M SBA loan at 10-year term"
+        },
+        {
+          "id": "4.2",
+          "text": "SBA eligibility assessment is LIKELY — car wash is explicitly noted as SBA-eligible category"
+        },
+        {
+          "id": "4.3",
+          "text": "Equity injection is calculated: $185,000 (10% of $1.85M)"
+        },
+        {
+          "id": "4.4",
+          "text": "Cash-on-cash return is calculated and shown"
+        },
+        {
+          "id": "4.5",
+          "text": "Live Oak Bank is named as the recommended specialist lender for car wash deals"
+        },
+        {
+          "id": "4.6",
+          "text": "Environmental assessment (Phase I) is flagged as required for car wash deals — listed as a required condition or next step"
+        },
+        {
+          "id": "4.7",
+          "text": "H1B note acknowledges that GM is already in place at market rate — this is a positive signal for the passive investor structure, reduces H1B risk compared to deals with no existing GM"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "DSCR failure — overpriced deal",
+      "prompt": "Run financing analysis on this deal:\n\nBusiness: Metro Office Services Group\nType: Commercial janitorial / facilities management\nAsking price: $2,500,000\nSDE: $300,000\nAnnual revenue: $1,600,000\nDeal state: SHORTLISTED\nNotes: Broker claims asking price reflects 'strategic value' and 'growth potential.' Business has been on market 8 months. Owner willing to stay on for 6-month transition. No mention of seller financing.",
+      "assertions": [
+        {
+          "id": "5.1",
+          "text": "DSCR is calculated as a hard FAIL — significantly below 1.0x at asking price (expected approximately 0.55-0.65x range)"
+        },
+        {
+          "id": "5.2",
+          "text": "Output presents a reverse DSCR calculation showing the maximum financeable purchase price — expected approximately $1.1M-$1.3M range"
+        },
+        {
+          "id": "5.3",
+          "text": "Output explicitly states the asking price is not supportable by the business's cash flow and that price renegotiation is required"
+        },
+        {
+          "id": "5.4",
+          "text": "SBA eligibility assessment is UNLIKELY at current asking price"
+        },
+        {
+          "id": "5.5",
+          "text": "Output notes that a hybrid structure (with seller carry) also fails to resolve the DSCR gap — the issue is fundamental overpricing, not structure"
+        },
+        {
+          "id": "5.6",
+          "text": "Output notes or flags that the 8-month time on market may indicate the market has already rejected this asking price — relevant negotiation signal"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Loan package checklist request",
+      "prompt": "What documents do I need for the SBA loan on the Clearwater Express Car Wash deal (asking $1.85M, SHORTLISTED)? I'm an H1B holder and haven't started collecting documents yet.",
+      "assertions": [
+        {
+          "id": "6.1",
+          "text": "Output provides all three phases of the checklist: Phase 1 (pre-LOI / gather now), Phase 2 (with LOI), and Phase 3 (underwriting)"
+        },
+        {
+          "id": "6.2",
+          "text": "H1B-specific documents are explicitly called out: H1B visa + I-797, passport, immigration attorney letter, operating agreement with passive investor language, GM employment agreement"
+        },
+        {
+          "id": "6.3",
+          "text": "GM identification is listed as a critical required item — specifically noted as a financing prerequisite for H1B buyers, not just a general suggestion"
+        },
+        {
+          "id": "6.4",
+          "text": "Environmental assessment (Phase I) is listed as required — car wash specific, with a note about chemical storage and potential Phase II if issues found"
+        },
+        {
+          "id": "6.5",
+          "text": "Business valuation is listed as required (deal exceeds $250K SBA threshold)"
+        },
+        {
+          "id": "6.6",
+          "text": "Timeline estimate is provided — 60-120 days from application to close, with note that Live Oak Bank may be faster (45-75 days) due to car wash specialization"
+        },
+        {
+          "id": "6.7",
+          "text": "At least 3 red flags that could delay or kill approval are mentioned — including lease assignability, seller inability to produce 3 years of tax returns, and environmental issues"
+        }
+      ]
+    }
+  ]
+}

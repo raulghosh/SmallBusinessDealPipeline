@@ -1,0 +1,216 @@
+{
+  "skill": "market-intel",
+  "version": "1.0",
+  "evals": [
+    {
+      "id": "eval_1",
+      "name": "Janitorial deal in Atlanta, GA — growing market, moderate competition",
+      "scenario": "A janitorial/commercial cleaning business located in Atlanta, GA (Fulton County). Revenue $650,000, SDE $195,000, asking price $585,000. 12 W-2 employees. 8 commercial cleaning contracts; largest client is 22% of revenue. In business since 2011. Stated annual insurance: $18,500. No window cleaning or elevated work. Deal evaluator previously ran and recommended PURSUE WITH CONDITIONS. Run market intel overlay.",
+      "assertions": [
+        {
+          "id": "1.1",
+          "description": "Industry trend classification for janitorial is GROWING",
+          "expected": "The market_intel.industry_trend field is set to GROWING, referencing post-COVID hygiene standards, outsourcing trends, or commercial real estate demand growth."
+        },
+        {
+          "id": "1.2",
+          "description": "Competitive density for Atlanta janitorial is MODERATE or SATURATED (not THIN)",
+          "expected": "The market_intel.competitive_density field is MODERATE or SATURATED. Atlanta is identified as a competitive market with national franchise chains (Jan-Pro, Coverall, ABM) present. The output does NOT classify Atlanta as THIN."
+        },
+        {
+          "id": "1.3",
+          "description": "Regulatory risk for Georgia is LOW",
+          "expected": "The market_intel.regulatory_risk field is LOW. Georgia's business-friendly environment, no state minimum wage increase, and at-will employment are cited as favorable factors."
+        },
+        {
+          "id": "1.4",
+          "description": "Verdict is GO or CAUTION (not AVOID)",
+          "expected": "The market_intel.verdict field is GO or CAUTION. AVOID would be incorrect for a janitorial deal in Atlanta given the growing industry trend and low regulatory risk. If CAUTION, the rationale references competitive density or consolidation risk."
+        },
+        {
+          "id": "1.5",
+          "description": "Insurance cost is within benchmark range (not flagged as below-benchmark)",
+          "expected": "Stated insurance of $18,500 on $650,000 revenue = 2.85% of revenue. This falls within the 2-4% benchmark range for janitorial. The output does NOT flag insurance as below-benchmark. Insurance outlook cost estimate confirms the 2-4% range."
+        },
+        {
+          "id": "1.6",
+          "description": "Consolidation risk for janitorial is flagged",
+          "expected": "The output explicitly mentions PE-backed roll-up risk or national franchise competition (Jan-Pro, Coverall, ABM Industries, or similar) as a headwind. Consolidation is not buried — it is called out as a meaningful macro risk for independent operators."
+        },
+        {
+          "id": "1.7",
+          "description": "Market intel overlay notes how it interacts with the deal evaluator's PURSUE WITH CONDITIONS verdict",
+          "expected": "The Market Intel Report includes a statement synthesizing the market intel verdict with the pre-existing PURSUE WITH CONDITIONS deal evaluator verdict. The output acknowledges both verdicts and defers the final decision to the user."
+        }
+      ]
+    },
+    {
+      "id": "eval_2",
+      "name": "Express car wash in Charlotte, NC — overbuilt market, 4 tunnels within 5 miles",
+      "scenario": "An express tunnel car wash in the Ballantyne/South Charlotte corridor, Mecklenburg County, NC. Revenue $1,100,000, SDE $320,000, asking price $1,280,000. Tunnel installed 2020. 7 employees. 820 active monthly members. Google Maps confirms 4 competing express tunnels within 5 miles (including a Mister Car Wash and a ZIPS Car Wash location). Stated annual insurance: $42,000. Run market intel overlay.",
+      "assertions": [
+        {
+          "id": "2.1",
+          "description": "Competitive density is SATURATED",
+          "expected": "The market_intel.competitive_density field is SATURATED. Four express tunnels within 5 miles clearly exceeds the RED threshold (4+ = SATURATED). The output specifically references the 4-tunnel count and names the PE-backed competitors (Mister Car Wash, ZIPS) as factors."
+        },
+        {
+          "id": "2.2",
+          "description": "Verdict is CAUTION or AVOID",
+          "expected": "The market_intel.verdict field is CAUTION or AVOID. AVOID is strongly supported by saturated competitive density. If CAUTION, the rationale must acknowledge that competitive saturation is a serious risk and identify specific conditions that would be needed to justify proceeding."
+        },
+        {
+          "id": "2.3",
+          "description": "Headwinds explicitly mention express tunnel overbuilding",
+          "expected": "The market_intel.headwinds array includes at least one headwind that specifically references express tunnel overbuilding, PE-backed competitor presence, or membership margin compression from competitive saturation."
+        },
+        {
+          "id": "2.4",
+          "description": "Membership churn risk is flagged as a concern",
+          "expected": "The output mentions membership churn risk in the context of saturated markets — either in headwinds, competitive notes, or verdict rationale. The output does NOT treat 820 members as an unambiguous positive without noting the churn risk in a competitive market."
+        },
+        {
+          "id": "2.5",
+          "description": "Overall market risk is MEDIUM or HIGH",
+          "expected": "The market_intel.overall_market_risk field is MEDIUM or HIGH. Given SATURATED competitive density, the overall market risk cannot be LOW."
+        },
+        {
+          "id": "2.6",
+          "description": "Insurance cost for car wash is within benchmark range",
+          "expected": "Stated insurance of $42,000 on $1,100,000 revenue = 3.8% of revenue. This falls within the 3-6% benchmark range for car wash. The output confirms this is within range. NC modifier of ~1.05x applied to baseline suggests $33,000-$69,000 — stated $42,000 is solidly in range."
+        },
+        {
+          "id": "2.7",
+          "description": "NC regulatory risk is MEDIUM (not LOW), noting environmental compliance",
+          "expected": "The market_intel.regulatory_risk is LOW or MEDIUM (not HIGH). NC DEQ's more active environmental oversight for car wash operators is noted. The output references NC's minimum wage trajectory as a WATCH item."
+        }
+      ]
+    },
+    {
+      "id": "eval_3",
+      "name": "Laundromat in Nashville, TN — gentrifying neighborhood, 8 years lease remaining",
+      "scenario": "An attended laundromat with WDF service in East Nashville, Davidson County, TN. Revenue $280,000, SDE $84,000, asking price $275,000. In business since 2009. 2 part-time attendants (total payroll ~$32,000/yr). Card + coin payment system. 8 years remaining on lease (no renewal option stated). Median home values in the zip code have increased 45% over the past 5 years. A new luxury apartment building was recently constructed 0.3 miles away with in-unit washer/dryers standard. Stated annual insurance: $7,200. Run market intel overlay.",
+      "assertions": [
+        {
+          "id": "3.1",
+          "description": "Gentrification risk is flagged in headwinds",
+          "expected": "The market_intel.headwinds array includes at least one entry explicitly referencing gentrification risk, customer base erosion from rising household income, declining renter density, or in-unit washer/dryer penetration displacing the laundromat's customer base. The 45% home value increase and the new luxury apartment building are recognized as gentrification indicators."
+        },
+        {
+          "id": "3.2",
+          "description": "Tennessee regulatory risk is LOW",
+          "expected": "The market_intel.regulatory_risk is LOW. Tennessee's business-friendly environment, no state minimum wage mandate, favorable workers comp rates, and low TVA utility costs are cited. Tennessee is NOT rated MEDIUM or HIGH regulatory risk."
+        },
+        {
+          "id": "3.3",
+          "description": "Insurance estimates are provided in the output",
+          "expected": "The output provides an annual insurance cost estimate as a percentage of revenue for a laundromat (benchmark: 2-4% of revenue). Stated insurance of $7,200 on $280,000 revenue = 2.57% — within range. The output confirms this is within benchmark range and provides the benchmark reference."
+        },
+        {
+          "id": "3.4",
+          "description": "Lease term is flagged as a risk given gentrification context",
+          "expected": "The output flags the 8-year lease term (with no renewal option confirmed) as a risk in the context of a gentrifying neighborhood. The combination of gentrification signals + limited lease runway is identified as a structural concern. The output does NOT treat 8 years as fully adequate without noting the lack of renewal option."
+        },
+        {
+          "id": "3.5",
+          "description": "Industry trend for laundromat is STABLE",
+          "expected": "The market_intel.industry_trend is STABLE. Laundromat is not classified as GROWING or DECLINING at the macro level. The persistent demand from renter populations is acknowledged while the specific market risk (gentrification) is addressed separately in headwinds and competitive notes."
+        },
+        {
+          "id": "3.6",
+          "description": "Verdict is CAUTION (not GO or AVOID)",
+          "expected": "The market_intel.verdict is CAUTION. The combination of gentrification risk, lease term uncertainty, and lack of renewal option argues against GO. But the stable industry trend, low regulatory environment, and card payment system in place argue against AVOID. CAUTION is the correct synthesis."
+        },
+        {
+          "id": "3.7",
+          "description": "Tennessee utility cost advantage is noted as a tailwind",
+          "expected": "The output mentions Tennessee's low commercial electricity rates (TVA service area) as a tailwind for laundromat operations, specifically because energy is a significant operating cost for laundromats."
+        }
+      ]
+    },
+    {
+      "id": "eval_4",
+      "name": "Janitorial in Jacksonville, FL — workers comp concern, hurricane insurance risk",
+      "scenario": "A commercial cleaning business in Jacksonville, FL (Duval County). Revenue $920,000, SDE $230,000, asking price $690,000. 18 W-2 employees, primarily office and healthcare facility cleaning. Payroll: $480,000/yr. Stated annual insurance: $19,500 (which the broker says covers 'general liability and workers comp'). In business since 2005. No window cleaning. Run market intel overlay.",
+      "assertions": [
+        {
+          "id": "4.1",
+          "description": "Insurance outlook flags FL workers comp as elevated cost",
+          "expected": "The insurance_outlook section identifies Florida's elevated workers comp rates (6-9% of payroll for class 9014 janitorial) as a significant cost factor. With $480,000 in payroll, expected workers comp alone = $28,800-$43,200/yr. Stated total insurance of $19,500 is BELOW benchmark. The output flags this discrepancy explicitly."
+        },
+        {
+          "id": "4.2",
+          "description": "Insurance is flagged as below benchmark with specific concern",
+          "expected": "The output triggers the below-benchmark insurance flag. Stated insurance of $19,500 on $920,000 revenue = 2.12% — technically within the 2-4% range in isolation, BUT the FL workers comp alone (at benchmark) would be $28,800-$43,200, meaning stated total insurance of $19,500 almost certainly indicates workers comp is either missing or severely underreported. This discrepancy is called out explicitly."
+        },
+        {
+          "id": "4.3",
+          "description": "Hurricane / property risk is mentioned as a Florida-specific insurance consideration",
+          "expected": "The output notes hurricane and wind exposure as a Florida-specific risk in the insurance outlook, even though this is a janitorial business. The note should acknowledge that commercial auto and business property insurance are elevated in FL, and that the FL insurance market is under stress. The output does NOT simply ignore the Florida property/wind insurance context."
+        },
+        {
+          "id": "4.4",
+          "description": "Overall market risk is MEDIUM",
+          "expected": "The market_intel.overall_market_risk is MEDIUM. Florida's rising minimum wage, elevated workers comp, and insurance cost environment justify MEDIUM over LOW. The janitorial industry's growth trend and Jacksonville's moderate competitive density prevent it from being HIGH."
+        },
+        {
+          "id": "4.5",
+          "description": "Florida minimum wage trajectory is flagged as a headwind",
+          "expected": "The market_intel.headwinds array includes Florida's rising minimum wage trajectory (federally mandated increases to $15/hr by 2026-2027) as a headwind specifically impacting janitorial labor costs. The output notes that janitorial businesses with hourly workers face legislatively mandated cost increases."
+        },
+        {
+          "id": "4.6",
+          "description": "Regulatory risk for Florida is MEDIUM (not LOW)",
+          "expected": "The market_intel.regulatory_risk is MEDIUM. Florida is not LOW-risk due to rising minimum wage, elevated workers comp, and stricter environmental compliance (relevant here as background). The output does NOT rate Florida regulatory risk as LOW."
+        },
+        {
+          "id": "4.7",
+          "description": "Healthcare cleaning niche is noted as a tailwind or green flag",
+          "expected": "The output recognizes that healthcare and medical facility cleaning (part of this business's revenue base) is a growing, higher-margin niche with greater client stickiness than general office cleaning. This is acknowledged as a tailwind or competitive moat signal."
+        }
+      ]
+    },
+    {
+      "id": "eval_5",
+      "name": "Laundromat in Birmingham, AL — low competition, stable working-class neighborhood, coin + card system",
+      "scenario": "An unattended laundromat in Northport, Tuscaloosa County, AL (adjacent to Birmingham metro). Revenue $195,000, SDE $71,500, asking price $215,000. In business since 2001. Coin + card payment system (installed 2022). 28 washers, 24 dryers (most replaced within last 6 years). No employees — fully unattended. Zip code has approximately 3,200 renter households; Google Maps shows this is the only laundromat in the zip code. Neighborhood median home values have been stable (less than 10% increase in 5 years). Stated annual insurance: $5,400. Run market intel overlay.",
+      "assertions": [
+        {
+          "id": "5.1",
+          "description": "Competitive density is THIN",
+          "expected": "The market_intel.competitive_density is THIN. One laundromat serving 3,200 renter households exceeds the GREEN threshold (1:4,000+ is THIN; 1:3,200 is at the edge of THIN/MODERATE). Given the working-class stable neighborhood and the card system installation, THIN is the appropriate classification. The output does NOT classify this as SATURATED or MODERATE given the facts presented."
+        },
+        {
+          "id": "5.2",
+          "description": "Industry trend for laundromat is STABLE",
+          "expected": "The market_intel.industry_trend is STABLE. The laundromat vertical is not classified as GROWING (macro growth is modest) or DECLINING (structural demand from renters is persistent). The stable working-class neighborhood with consistent renter population supports the STABLE classification."
+        },
+        {
+          "id": "5.3",
+          "description": "Verdict is GO",
+          "expected": "The market_intel.verdict is GO. The combination of THIN competitive density, stable neighborhood (no gentrification signal), Alabama's low regulatory risk, favorable insurance costs, and card payment system installed supports a GO verdict. CAUTION would require a specific identified concern; AVOID is clearly inappropriate."
+        },
+        {
+          "id": "5.4",
+          "description": "Alabama regulatory risk is LOW",
+          "expected": "The market_intel.regulatory_risk is LOW. Alabama's no state minimum wage, low workers comp rates, minimal regulatory burden for laundromats, and ADEM's lighter environmental enforcement posture are cited as favorable. Alabama is recognized as one of the most business-friendly states in the target geography."
+        },
+        {
+          "id": "5.5",
+          "description": "Insurance is within benchmark (no flag triggered)",
+          "expected": "Stated insurance of $5,400 on $195,000 revenue = 2.77% of revenue. This falls within the 2-4% benchmark range for laundromat. For an unattended laundromat with no employees, workers comp is minimal or zero — the GL and property coverage at $5,400 is appropriate. The output does NOT flag insurance as below-benchmark."
+        },
+        {
+          "id": "5.6",
+          "description": "Card payment system is noted as a positive (competitive advantage or moat signal)",
+          "expected": "The output notes the 2022 card payment system installation as a positive signal — either as a tailwind (revenue verification, remote monitoring, modern customer experience) or as a moat signal versus coin-only competitors in the area. The output does NOT ignore the card system."
+        },
+        {
+          "id": "5.7",
+          "description": "No gentrification risk flag triggered",
+          "expected": "The output does NOT flag gentrification risk. The stable neighborhood (less than 10% home value increase in 5 years) and working-class demographics do NOT trigger gentrification concern. The output correctly identifies this as a stable-demand environment, not a gentrifying one."
+        }
+      ]
+    }
+  ]
+}
