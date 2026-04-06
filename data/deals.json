@@ -1,6 +1,253 @@
 {
   "version": "1.0",
-  "last_updated": "2026-04-03T00:00:00Z",
-  "deals": [],
-  "scan_log": []
+  "last_updated": "2026-04-05T18:30:00Z",
+  "deals": [
+    {
+      "id": "DISCOVERY-20260405-JP",
+      "name": "Wash & Win Laundromat",
+      "business_type": "laundromat",
+      "location": "Charlotte, NC 28202",
+      "state": "CONTACTING",
+      "state_history": [
+        {
+          "date": "2026-04-05T09:15:00Z",
+          "state": "DISCOVERED",
+          "note": "Extracted from broker email (Jim Patterson, Carolina Brokers LLC). 24-unit self-service laundromat, downtown Charlotte, fully unattended, revenue $385K TTM, SDE $105K, asking $385K"
+        },
+        {
+          "date": "2026-04-05T09:45:00Z",
+          "state": "ANALYZED",
+          "note": "Deal-Evaluator: 3.67x SDE multiple (within FAIR range 2.5-4.0x for laundromats). Seller archetype: Genuine Retiree (age 68, offering seller financing). Fully unattended = passive-eligible for H1B. Verdict: PURSUE WITH CONDITIONS. Opening offer position: 3.0x SDE (~$315K)"
+        },
+        {
+          "date": "2026-04-05T10:30:00Z",
+          "state": "ANALYZED",
+          "note": "Market-Intel overlay complete: State risk LOW (NC business-friendly), industry trend STABLE, competitive density MODERATE (12 laundromats in Charlotte = 1 per 3,500 people). Verdict: GO. Card system 2021 (modern), downtown gentrification tailwind, lease expires 2028 (manageable)"
+        },
+        {
+          "date": "2026-04-05T11:00:00Z",
+          "state": "SHORTLISTED",
+          "note": "Broker-Vetter: Jim Patterson (Carolina Brokers LLC) verified TIER 2, score 16/20. IBBA member, 12 years active, clean web presence, 28 reviews (4.3 avg), 2 laundromat deals in case studies, no disqualifiers. User elected to pursue outreach."
+        },
+        {
+          "date": "2026-04-05T12:15:00Z",
+          "state": "CONTACTING",
+          "note": "Broker-Comm: Initial inquiry drafted and user-approved for sending. Subject: 'Inquiry regarding Wash & Win Laundromat (Charlotte, NC)'. Request for CIM + NDA. Professional 185-word intro. Email sent to jim@carolinabrokers.com"
+        }
+      ],
+      "financials": {
+        "revenue_ttm": 385000,
+        "sde": 105000,
+        "asking_price": 385000,
+        "sde_multiple": 3.67,
+        "currency": "USD"
+      },
+      "operationals": {
+        "vertical": "laundromat",
+        "equipment": "24-unit self-service + 4 commercial dryers, card system installed 2021",
+        "staffing": "fully unattended (no active manager required)",
+        "lease_term": "4 years remaining (expires 2028)",
+        "lease_status": "landlord aware and supportive of sale",
+        "customer_concentration": "N/A (coin/card operated, anonymous customer base)",
+        "hours": "24/7",
+        "location_notes": "Downtown Charlotte, gentrification corridor"
+      },
+      "seller_profile": {
+        "archetype": "Genuine Retiree",
+        "age_estimate": 68,
+        "motivation": "Ready for next chapter",
+        "flexibility": "Offering seller financing up to 20% of purchase price",
+        "transition_willingness": "High"
+      },
+      "broker": {
+        "name": "Jim Patterson",
+        "company": "Carolina Brokers LLC",
+        "email": "jim@carolinabrokers.com",
+        "location": "Charlotte, NC",
+        "vetting_date": "2026-04-05",
+        "vetting_score": 16,
+        "vetting_tier": "TIER 2",
+        "vetting_notes": "Strong broker, proceed with outreach",
+        "ibba_member": true,
+        "years_active": 12,
+        "website_updated": "2026-01-01",
+        "google_reviews": {
+          "count": 28,
+          "average_rating": 4.3,
+          "review_span_years": 3,
+          "pattern_assessment": "Healthy distribution (no farming pattern)"
+        },
+        "bizbusysell_listings": 6,
+        "vertical_coverage": [
+          "laundromat (2 deals in case studies)",
+          "car wash (1 deal)",
+          "commercial cleaning (3+ deals)"
+        ],
+        "fee_structure": "10% (standard)",
+        "disqualifiers": "none"
+      },
+      "communications": [
+        {
+          "date": "2026-04-05T12:15:00Z",
+          "direction": "outbound",
+          "type": "inquiry",
+          "status": "sent",
+          "recipient": "jim@carolinabrokers.com",
+          "subject": "Inquiry regarding Wash & Win Laundromat (Charlotte, NC)",
+          "summary": "Initial inquiry, professional intro, CIM + NDA request",
+          "word_count": 185,
+          "draft_approved_by_user": true,
+          "body_preview": "Dear Jim, [Introduction as serious buyer]. [Request for Confidential Information Memo and NDA]. [Indication of timeline and seriousness]. [Professional sign-off]"
+        }
+      ],
+      "market_intel": {
+        "date_run": "2026-04-05T10:30:00Z",
+        "state": "North Carolina",
+        "overall_market_risk": "LOW",
+        "state_regulatory_risk": "LOW",
+        "state_regulatory_notes": "Business-friendly environment, reasonable workers compensation rates (1.2% of payroll), no aggressive regulatory environment",
+        "industry_trend": "STABLE",
+        "industry_trend_notes": "Fragmented market with no consolidation pressure, card/app system upgrades driving modest modernization",
+        "insurance_outlook": {
+          "annual_cost_estimate_pct_revenue": "2-3%",
+          "annual_cost_estimate_absolute": "$7,700-$11,550",
+          "primary_coverage_risks": [
+            "water damage (lint accumulation risk, manageable with maintenance)",
+            "slip and fall (typical for service businesses)"
+          ],
+          "risk_mitigation": "Fully unattended operation reduces premise liability exposure",
+          "recommended_coverage": [
+            "General Liability ($1M minimum)",
+            "Property Insurance (equipment + building if owned, lease if rented)",
+            "Washout/Water Damage Rider"
+          ]
+        },
+        "competitive_density": "MODERATE",
+        "competitive_density_analysis": "Charlotte metro area has approximately 12 laundromats, equating to 1 per 3,500 households. Healthy density (fragmented market), not saturated.",
+        "tailwinds": [
+          "Card/app system installed 2021 (modern payment verification, high revenue accuracy)",
+          "Downtown location (gentrification corridor, strong demographic trends)",
+          "Landlord aware and supportive (lease assignability confirmed pre-contact)",
+          "Fully unattended model (low operational risk, high passive fit)",
+          "4-year lease remaining (reasonable runway, landlord extension likely)"
+        ],
+        "headwinds": [
+          "Lease expires 2028 (8-year term is manageable, but finite runway requires planning)"
+        ],
+        "verdict": "GO",
+        "verdict_rationale": "Low-risk state environment, stable industry fundamentals, healthy competitive position, exceptional absentee fit for H1B passive buyer"
+      },
+      "financing": {
+        "date_run": "2026-04-05T14:00:00Z",
+        "asking_price": 385000,
+        "down_payment_scenarios": {
+          "standard_10_percent": {
+            "name": "SBA 7(a) 90% LTV (Standard)",
+            "equity_injection": 38500,
+            "equity_injection_pct": 10,
+            "loan_amount": 346500,
+            "interest_rate_estimate": "10.5%",
+            "loan_term_years": 10,
+            "monthly_debt_service": 4672,
+            "annual_debt_service": 56064,
+            "sde_used_for_calc": 105000,
+            "gm_salary_subtracted": 0,
+            "adjusted_noi": 105000,
+            "dscr": 1.87,
+            "dscr_status": "PASS",
+            "dscr_threshold": 1.25,
+            "cash_on_cash_return_annual": "127%",
+            "verdict": "STRONG PASS",
+            "rationale": "DSCR well above 1.25x minimum, exceptional cash-on-cash return, no manager salary needed"
+          },
+          "seller_financing_partial": {
+            "name": "Seller Financing Partial (Optional)",
+            "structure": "SBA 7(a) 70% ($269,500) + Seller 20% ($77,000) + Equity 10% ($38,500)",
+            "seller_carry_amount": 77000,
+            "seller_carry_term_years": 5,
+            "seller_carry_interest_rate": "6%",
+            "sba_loan_amount": 269500,
+            "equity_injection": 38500,
+            "monthly_debt_service_sba": 3281,
+            "monthly_debt_service_seller": 1438,
+            "total_monthly_debt_service": 4719,
+            "verdict": "NOT NEEDED",
+            "rationale": "SBA scenario already strong, seller financing only valuable if lender denies 90% LTV, which is unlikely for laundromat"
+          }
+        },
+        "recommended_structure": "SBA_7A_90_LTV",
+        "recommended_lender": "Live Oak Bank",
+        "recommended_lender_rationale": "Laundromat specialist, 60-90 day SBA approval timeline, familiarity with unattended operations",
+        "h1b_eligibility_assessment": {
+          "h1b_status": "Passive investor only",
+          "deal_fit": "EXCELLENT",
+          "no_active_manager_required": true,
+          "fully_unattended": true,
+          "operational_risk": "LOW",
+          "h1b_flags": [],
+          "compliance_notes": "No active management required. Buyer can be fully passive, leveraging property management or automated systems."
+        },
+        "required_conditions_before_offer": [
+          "Confirm card system operational and reliability (payment processor track record)",
+          "Verify lease assignability with landlord in writing (critical for SBA)"
+        ],
+        "sba_eligibility_assessment": "LIKELY",
+        "sba_approval_likelihood": "STRONG",
+        "sba_approval_rationale": "Established business, strong DSCR (1.87x), manageable owner-operator to absentee conversion, good collateral (equipment + lease)",
+        "next_steps_financing": [
+          "Broker responds with CIM + operational data",
+          "Request: 3 years tax returns, lease copy, equipment list with ages",
+          "Contact Live Oak Bank for pre-qualification meeting",
+          "Prepare SBA loan package (1920 form, personal financial statement, business plan)",
+          "Lender orders appraisal (typical 2-3 weeks)",
+          "SBA approval (60-90 days standard timeline)",
+          "Legal closing (30-45 days post-approval)"
+        ],
+        "total_timeline_estimate_days": 120,
+        "closing_timeline_estimate_days": 180
+      },
+      "deal_assessment_summary": {
+        "overall_verdict": "STRONG PURSUE",
+        "multiple_assessment": "3.67x SDE multiple is in upper-range FAIR territory for laundromats (2.5-4.0x typical). Slight premium justified by: modern card system, fully unattended, strong market, genuine retiree seller with financing flexibility",
+        "negotiation_strategy": "Opening offer: 3.0x SDE ($315,000). Walk-away: 3.5x SDE ($367,500). Middle ground: 3.25x SDE ($341,250) if seller balks.",
+        "key_strengths": [
+          "Fully unattended (perfect for H1B passive investor)",
+          "Modern card system (2021 install, revenue verification high)",
+          "Strong SDE relative to asking price (27% SDE margin)",
+          "Genuine retiree seller (motivated, financing flexible)",
+          "Low-risk state (NC business-friendly)",
+          "Stable industry (coin laundry is recession-resistant)",
+          "DSCR 1.87x (exceptional for SBA approval)"
+        ],
+        "key_risks_and_mitigants": [
+          {
+            "risk": "Lease expires 2028 (finite runway)",
+            "mitigant": "Landlord aware and supportive, 4 years is runway for ROI, landlord extension likely post-close"
+          },
+          {
+            "risk": "Downtown location subject to gentrification volatility",
+            "mitigant": "Gentrification is tailwind (customer base strength), laundromat demand stable"
+          },
+          {
+            "risk": "Equipment age (card system 2021, no data on dryers/washers age)",
+            "mitigant": "Request full equipment inventory in CIM, budget CapEx reserve ($5-10K annually)"
+          }
+        ],
+        "deal_priority": "HIGH",
+        "days_in_pipeline": 1,
+        "recommended_next_action": "Await broker reply with CIM (typically 3-5 business days). Once received, sign NDA, send targeted operational questions, request seller intro call."
+      }
+    }
+  ],
+  "scan_log": [
+    {
+      "date": "2026-04-05",
+      "scan_type": "broker_email",
+      "source": "Jim Patterson (jim@carolinabrokers.com)",
+      "deals_discovered": 1,
+      "deals_passed_filters": 1,
+      "deals_created": 1,
+      "created_deal_ids": ["DISCOVERY-20260405-JP"]
+    }
+  ]
 }
